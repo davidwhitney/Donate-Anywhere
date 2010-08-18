@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GG.DonateAnywhere.Core", "GG.DonateAnywhere.Core\GG.DonateAnywhere.Core.csproj", "{59A27EE9-91C2-4564-B921-2D2FE0FF7F04}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GG.DonateAnywhere.Core.Test.Unit", "GG.DonateAnywhere.Core.Test.Unit\GG.DonateAnywhere.Core.Test.Unit.csproj", "{A79E176C-032B-46AA-8610-6F75860A2CF5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GG.DonateAnywhere", "GG.DonateAnywhere\GG.DonateAnywhere.csproj", "{B9B21D92-801F-4B21-A5B1-81C224B94EE5}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{59A27EE9-91C2-4564-B921-2D2FE0FF7F04}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{59A27EE9-91C2-4564-B921-2D2FE0FF7F04}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{59A27EE9-91C2-4564-B921-2D2FE0FF7F04}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{59A27EE9-91C2-4564-B921-2D2FE0FF7F04}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A79E176C-032B-46AA-8610-6F75860A2CF5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A79E176C-032B-46AA-8610-6F75860A2CF5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A79E176C-032B-46AA-8610-6F75860A2CF5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A79E176C-032B-46AA-8610-6F75860A2CF5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B9B21D92-801F-4B21-A5B1-81C224B94EE5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B9B21D92-801F-4B21-A5B1-81C224B94EE5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B9B21D92-801F-4B21-A5B1-81C224B94EE5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B9B21D92-801F-4B21-A5B1-81C224B94EE5}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
