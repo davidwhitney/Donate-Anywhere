@@ -7,8 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace GG.DonateAnywhere.Views.Iframe
-{
+namespace GG.DonateAnywhere.Views.Iframe{
     
     
     public partial class Iframe {
