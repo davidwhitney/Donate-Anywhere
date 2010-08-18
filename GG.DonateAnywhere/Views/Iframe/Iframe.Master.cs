@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace GG.DonateAnywhere.Views.Shared
+namespace GG.DonateAnywhere.Views.Iframe
 {
     public partial class Iframe : System.Web.UI.MasterPage
     {

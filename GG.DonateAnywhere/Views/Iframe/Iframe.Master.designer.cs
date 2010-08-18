@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace GG.DonateAnywhere.Views.Shared
+namespace GG.DonateAnywhere.Views.Iframe
 {
     
     

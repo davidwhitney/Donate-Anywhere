@@ -1,0 +1,48 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Iframe.master.cs" Inherits="System.Web.Mvc.ViewMasterPage<GG.DonateAnywhere.Core.DonateAnywhereResult>" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title></title>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+
+    <style type="text/css">
+    #body
+    {
+        padding: 0px 0px 0px 0px;
+        margin: 0px 0px 0px 0px;
+    }
+    .donateAnywhere
+    {
+        width: 150px;
+        padding: 0px;
+        background-color: Blue;
+        text-align: center;
+    }
+    .donateViaLandingPage
+    {
+        width: 250px;
+        padding: 0px;
+        background-color: Teal;
+    }
+    .donateDirectLink
+    {
+        width: 250px;
+        padding: 0px;
+        background-color: Teal;
+    }
+    </style>
+</head>
+<body>
+    <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+        
+    </asp:ContentPlaceHolder>
+    
+    <br /><br />
+    <!--    <%Html.RenderPartial("DebugOutput", Model); %> -->
+    
+
+</body>
+</html>
