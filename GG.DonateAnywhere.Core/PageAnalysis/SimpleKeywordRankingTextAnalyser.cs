@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -14,10 +14,8 @@ namespace GG.DonateAnywhere.Core.PageAnalysis
 
             var ranking = new Dictionary<string, decimal>();
 
-            foreach(var word in plainText.Split(' '))
+            foreach (var word in plainText.Split(' ').Where(word => !string.IsNullOrWhiteSpace(word)))
             {
-                if (string.IsNullOrWhiteSpace(word)) { continue;}
-
                 if (ranking.ContainsKey(word))
                 {
                     ranking[word]++;
@@ -43,7 +41,7 @@ namespace GG.DonateAnywhere.Core.PageAnalysis
             source = RemoveSpecialCharacters(source);
             var exclusionList = LoadWordExclusionList();
             var words = source.Split(' ').ToList();
-            foreach(var whitelistedWord in exclusionList.Split('\r'))
+            foreach(var whitelistedWord in exclusionList)
             {
                 var word = whitelistedWord;
                 words.RemoveAll(s => s == word);
@@ -101,13 +99,15 @@ namespace GG.DonateAnywhere.Core.PageAnalysis
             return source;
         }
 
-        private static string LoadWordExclusionList()
+        private static List<string> LoadWordExclusionList()
         {
             var resourceStream = Assembly.GetCallingAssembly().GetManifestResourceStream("GG.DonateAnywhere.Core.PageAnalysis.whitelist.txt");
             var reader = new StreamReader(resourceStream);
             var contents = reader.ReadToEnd();
+            contents = contents.Replace("\n", "\r");
+            contents = contents.Replace("\r\r", "\r");
             contents = contents.Replace(Environment.NewLine, "\r");
-            return contents;
+            return contents.Split('\r').ToList();
         }
     }
 }
