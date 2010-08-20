@@ -1,4 +1,4 @@
-﻿the
+the
 in
 a
 at
@@ -226,3 +226,9 @@ maybe
 perhaps
 sometimes
 because
+true
+false
+function
+news
+with
+from
