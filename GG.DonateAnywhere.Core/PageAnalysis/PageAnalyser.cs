@@ -1,6 +1,7 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Web;
 using GG.DonateAnywhere.Core.Http;
 using HtmlAgilityPack;
@@ -36,6 +37,9 @@ namespace GG.DonateAnywhere.Core.PageAnalysis
 
         private static string ExtractPlainTextFromHtml(string html)
         {
+            html = Regex.Replace(html, "<script.*?</script>", "", RegexOptions.Singleline | RegexOptions.IgnoreCase);
+            html = Regex.Replace(html, "<style.*?</style>", "", RegexOptions.Singleline | RegexOptions.IgnoreCase);
+
             var doc = new HtmlDocument();
             doc.LoadHtml(html);
 
