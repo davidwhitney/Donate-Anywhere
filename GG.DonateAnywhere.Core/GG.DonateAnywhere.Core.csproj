@@ -51,6 +51,9 @@
     <Compile Include="Http\IDirectHttpRequestTransport.cs" />
     <Compile Include="IDonateAnywhereRequestContext.cs" />
     <Compile Include="IDonateAnywhereService.cs" />
+    <Compile Include="PageAnalysis\AssemblyResourceExcludedWordsRepository.cs" />
+    <Compile Include="PageAnalysis\IExcludedWordsRepository.cs" />
+    <Compile Include="PageAnalysis\IPageAnalyser.cs" />
     <Compile Include="Searching\ISearchProvider.cs" />
     <Compile Include="PageAnalysis\PageAnalyser.cs" />
     <Compile Include="PageAnalysis\PageReport.cs" />

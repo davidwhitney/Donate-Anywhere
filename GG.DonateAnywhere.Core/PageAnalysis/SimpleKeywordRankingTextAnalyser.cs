@@ -1,13 +1,23 @@
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
-using System.Reflection;
 
 namespace GG.DonateAnywhere.Core.PageAnalysis
 {
     public class SimpleKeywordRankingTextAnalyser
     {
+        private readonly IExcludedWordsRepository _excludedWordsRepository;
+
+        public SimpleKeywordRankingTextAnalyser()
+            : this(new AssemblyResourceExcludedWordsRepository("GG.DonateAnywhere.Core.PageAnalysis.whitelist.txt"))
+        {
+        }
+
+        public SimpleKeywordRankingTextAnalyser(IExcludedWordsRepository excludedWordsRepository)
+        {
+            _excludedWordsRepository = excludedWordsRepository;
+        }
+
         public IDictionary<string, decimal> RankKeywords(string plainText)
         {
             plainText = ClenseSourceData(plainText);
@@ -29,17 +39,17 @@ namespace GG.DonateAnywhere.Core.PageAnalysis
             return ranking.OrderBy(x => x.Value).Reverse().ToDictionary(x => x.Key, x => x.Value);
         }
 
-        private static string ClenseSourceData(string plainText)
+        private string ClenseSourceData(string plainText)
         {
             plainText = plainText.ToLower().Trim();
             plainText = FilterCommonWords(plainText);
             return plainText;
         }
 
-        private static string FilterCommonWords(string source)
+        private string FilterCommonWords(string source)
         {
             source = RemoveSpecialCharacters(source);
-            var exclusionList = LoadWordExclusionList();
+            var exclusionList = _excludedWordsRepository.RetrieveExcludedWords();
             var words = source.Split(' ').ToList();
             foreach(var whitelistedWord in exclusionList)
             {
@@ -97,17 +107,6 @@ namespace GG.DonateAnywhere.Core.PageAnalysis
             source = source.Replace("8", "");
             source = source.Replace("9", "");
             return source;
-        }
-
-        private static List<string> LoadWordExclusionList()
-        {
-            var resourceStream = Assembly.GetCallingAssembly().GetManifestResourceStream("GG.DonateAnywhere.Core.PageAnalysis.whitelist.txt");
-            var reader = new StreamReader(resourceStream);
-            var contents = reader.ReadToEnd();
-            contents = contents.Replace("\n", "\r");
-            contents = contents.Replace("\r\r", "\r");
-            contents = contents.Replace(Environment.NewLine, "\r");
-            return contents.Split('\r').ToList();
         }
     }
 }

@@ -5,14 +5,11 @@
 
 <asp:Content ID="body" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 <% if(Model.RequestContext.ShowResultsPage) {%>
-<div class="donateAnywhere">
-    <a class="donateViaLandingPage" href="/LandingPage?Keywords=<%: string.Join(",", Model.Keywords) %>" target="_parent">Donate using JGDonateAnywhere</a>
+<a href="/LandingPage?Keywords=<%: string.Join(",", Model.Keywords) %>" target="_parent" class="donateAnywhereButton"><span>Make a difference</span><br /><span>Donate Now</span></a>
 </div>
 <%} %>
 <% if(!Model.RequestContext.ShowResultsPage) {%>
-<div class="donateAnywhere">
-    <a class="donateDirectLink" href="<%=Model.Results[0].Url %>">Donate To <%:Model.Results[0].Title %> using JGDonateAnywhere</a>
-</div>
+<a  href="<%=Model.Results[0].Url %>" target="_parent" class="donateAnywhereButton"><span>Donate To <%:Model.Results[0].Title %> with soem jasgag ag agh a ag ag hjhjk hjk hjk hjkh jkh jkh </span></a>
 <%} %>
 </asp:Content>
 

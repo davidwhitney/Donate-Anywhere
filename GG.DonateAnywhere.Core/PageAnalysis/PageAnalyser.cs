@@ -8,11 +8,6 @@ using HtmlAgilityPack;
 
 namespace GG.DonateAnywhere.Core.PageAnalysis
 {
-    public interface IPageAnalyser
-    {
-        PageReport Analyse(Uri uri);
-    }
-
     public class PageAnalyser : IPageAnalyser
     {
         private readonly IDirectHttpRequestTransport _httpRequestTransport;

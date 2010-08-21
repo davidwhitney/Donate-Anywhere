@@ -8,37 +8,49 @@
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
 
-    <style type="text/css">
-    #body
-    {
-        padding: 0px 0px 0px 0px;
-        margin: 0px 0px 0px 0px;
-    }
-    .donateAnywhere
-    {
-        width: 150px;
-        padding: 0px;
-        background-color: Blue;
-        text-align: center;
-    }
-    .donateViaLandingPage
-    {
-        width: 250px;
-        padding: 0px;
-        background-color: Teal;
-    }
-    .donateDirectLink
-    {
-        width: 250px;
-        padding: 0px;
-        background-color: Teal;
-    }
-    </style>
+	
+	<style type="text/css">
+	.donateAnywhereButton
+	{
+	    display: block;
+	    padding-top: 5px;
+	    padding-bottom: 5px;
+	    
+	    padding-left: 5px;
+	    padding-right: 5px;
+	    
+	    min-width: 127px;
+	    min-height: 25px;
+	    max-height: 60px;
+	    overflow: hidden;
+	    background-color: #6C83D9;
+	    
+	    text-align: center;	    
+        text-decoration: none;
+	    
+	    -webkit-border-radius: 10px; /* Safari prototype */
+        -moz-border-radius: 10px; /* Gecko browsers */
+        border-radius: 10px; /* Everything else - limited support at the moment */
+	}
+	
+	.donateAnywhereButton span
+	{
+	    color: #fff !important;
+	    font-size: 14px;
+	    font-weight: bold;
+	    font-style: normal;
+	    text-decoration: none;
+	}
+	</style>
+
 </head>
 <body>
     <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
         
     </asp:ContentPlaceHolder>
+    <div style="text-align: right;">
+        <img src="../../Content/donateAnywhereLogo_small.png" alt="Powered by JustGiving DonateAnywhere" />
+    </div>
     
     <br /><br />
     <!--    <%Html.RenderPartial("DebugOutput", Model); %> -->

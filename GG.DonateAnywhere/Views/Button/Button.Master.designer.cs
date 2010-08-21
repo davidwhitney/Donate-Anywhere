@@ -7,12 +7,10 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace GG.DonateAnywhere.Views.Button
-{
-
-
-    public partial class Button
-    {
+namespace GG.DonateAnywhere.Views.Button{
+    
+    
+    public partial class Button {
         
         /// <summary>
         /// head control.

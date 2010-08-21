@@ -90,6 +90,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="BBC-Chernobyl.htm" />
+    <Content Include="Content\donateAnywhereLogo.png" />
+    <Content Include="Content\donateAnywhereLogo_small.png" />
     <Content Include="Default.htm" />
     <Content Include="SkipResultsPage.htm" />
     <Content Include="KeywordOverload.htm" />
