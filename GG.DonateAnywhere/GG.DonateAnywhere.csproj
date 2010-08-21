@@ -90,13 +90,13 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="TestPages\Default.htm" />
-    <Content Include="TestPages\SkipResultsPage.htm" />
-    <Content Include="TestPages\KeywordOverload.htm" />
-    <Content Include="TestPages\Floods.htm" />
+    <Content Include="Default.htm" />
+    <Content Include="SkipResultsPage.htm" />
+    <Content Include="KeywordOverload.htm" />
+    <Content Include="Floods.htm" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="TestPages\SimpleTest.htm" />
+    <Content Include="SimpleTest.htm" />
     <Content Include="Views\Iframe\NoResultsFound.aspx" />
     <Content Include="Views\Iframe\Index.aspx" />
     <Content Include="Views\Iframe\NotEnoughInformation.aspx" />
