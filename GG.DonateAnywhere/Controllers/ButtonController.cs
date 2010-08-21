@@ -10,19 +10,19 @@ using GG.DonateAnywhere.Core.PageAnalysis;
 
 namespace GG.DonateAnywhere.Controllers
 {
-    public class IframeController : Controller
+    public class ButtonController : Controller
     {
         private readonly IDonateAnywhereRequestContextFactory _contextFactory;
         private readonly IDonateAnywhereService _donateAnywhereService;
 
-        public IframeController()
+        public ButtonController()
             : this(new DonateAnywhereRequestContextFactory(), 
                    new DonateAnywhereService(new PageAnalyser(new DirectHttpRequestTransport(), new SimpleKeywordRankingTextAnalyser()), 
                    new MockSearchProvider()))
         {
         }
 
-        public IframeController(IDonateAnywhereRequestContextFactory contextFactory, IDonateAnywhereService donateAnywhereService)
+        public ButtonController(IDonateAnywhereRequestContextFactory contextFactory, IDonateAnywhereService donateAnywhereService)
         {
             _contextFactory = contextFactory;
             _donateAnywhereService = donateAnywhereService;

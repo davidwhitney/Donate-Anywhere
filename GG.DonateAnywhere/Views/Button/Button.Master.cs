@@ -5,9 +5,9 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace GG.DonateAnywhere.Views.Iframe
+namespace GG.DonateAnywhere.Views.Button
 {
-    public partial class Iframe : System.Web.UI.MasterPage
+    public partial class Button : System.Web.UI.MasterPage
     {
         protected void Page_Load(object sender, EventArgs e)
         {

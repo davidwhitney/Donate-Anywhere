@@ -68,18 +68,18 @@
     <Compile Include="Code\DonateAnywhereRequestContextFactory.cs" />
     <Compile Include="Code\IDonateAnywhereRequestContextFactory.cs" />
     <Compile Include="Code\MockSearchProvider.cs" />
-    <Compile Include="Controllers\IframeController.cs" />
+    <Compile Include="Controllers\ButtonController.cs" />
     <Compile Include="Controllers\LandingPageController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Views\Iframe\Iframe.Master.cs">
-      <DependentUpon>Iframe.Master</DependentUpon>
+    <Compile Include="Views\Button\Button.Master.cs">
+      <DependentUpon>Button.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Views\Iframe\Iframe.Master.designer.cs">
-      <DependentUpon>Iframe.Master</DependentUpon>
+    <Compile Include="Views\Button\Button.Master.designer.cs">
+      <DependentUpon>Button.Master</DependentUpon>
     </Compile>
     <Compile Include="Views\LandingPage\LandingPage.Master.cs">
       <DependentUpon>LandingPage.Master</DependentUpon>
@@ -97,9 +97,9 @@
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="SimpleTest.htm" />
-    <Content Include="Views\Iframe\NoResultsFound.aspx" />
-    <Content Include="Views\Iframe\Index.aspx" />
-    <Content Include="Views\Iframe\NotEnoughInformation.aspx" />
+    <Content Include="Views\Button\NoResultsFound.aspx" />
+    <Content Include="Views\Button\Index.aspx" />
+    <Content Include="Views\Button\NotEnoughInformation.aspx" />
     <Content Include="Views\LandingPage\Index.aspx" />
     <Content Include="Views\LandingPage\NoResultsFound.aspx" />
     <Content Include="Views\LandingPage\NotEnoughInformation.aspx" />
@@ -135,7 +135,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Iframe\Iframe.Master" />
+    <Content Include="Views\Button\Button.Master" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\LandingPage\LandingPage.Master" />

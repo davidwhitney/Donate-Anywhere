@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Iframe/Iframe.Master" Inherits="System.Web.Mvc.ViewPage<GG.DonateAnywhere.Core.DonateAnywhereResult>" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Button/Button.Master" Inherits="System.Web.Mvc.ViewPage<GG.DonateAnywhere.Core.DonateAnywhereResult>" %>
 
 <asp:Content ID="head" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
