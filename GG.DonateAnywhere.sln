@@ -7,6 +7,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GG.DonateAnywhere.Core.Test
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GG.DonateAnywhere", "GG.DonateAnywhere\GG.DonateAnywhere.csproj", "{B9B21D92-801F-4B21-A5B1-81C224B94EE5}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{74AC53A4-E72A-46D1-AEB8-7B93AA8015DA}"
+	ProjectSection(SolutionItems) = preProject
+		UsageExamples.htm = UsageExamples.htm
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
