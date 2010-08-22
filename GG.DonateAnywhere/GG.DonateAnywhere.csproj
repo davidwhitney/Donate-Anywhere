@@ -69,6 +69,8 @@
     <Compile Include="Code\IDonateAnywhereRequestContextFactory.cs" />
     <Compile Include="Code\MockSearchProvider.cs" />
     <Compile Include="Controllers\ButtonController.cs" />
+    <Compile Include="Controllers\DocumentationController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LandingPageController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -81,6 +83,13 @@
     <Compile Include="Views\Button\Button.Master.designer.cs">
       <DependentUpon>Button.Master</DependentUpon>
     </Compile>
+    <Compile Include="Views\Documentation\Documentation.master.cs">
+      <DependentUpon>Documentation.master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Documentation\Documentation.master.designer.cs">
+      <DependentUpon>Documentation.master</DependentUpon>
+    </Compile>
     <Compile Include="Views\LandingPage\LandingPage.Master.cs">
       <DependentUpon>LandingPage.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -88,22 +97,33 @@
     <Compile Include="Views\LandingPage\LandingPage.Master.designer.cs">
       <DependentUpon>LandingPage.Master</DependentUpon>
     </Compile>
+    <Compile Include="Views\Shared\HomeAndDocs.Master.cs">
+      <DependentUpon>HomeAndDocs.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Shared\HomeAndDocs.Master.designer.cs">
+      <DependentUpon>HomeAndDocs.Master</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="BBC-Chernobyl.htm" />
+    <Content Include="TestPages\Button\BBC-Chernobyl.htm" />
     <Content Include="Content\donateAnywhereLogo.png" />
     <Content Include="Content\donateAnywhereLogo_small.png" />
-    <Content Include="LandingPageReferrerTest.htm" />
-    <Content Include="Default.htm" />
-    <Content Include="SkipResultsPage.htm" />
-    <Content Include="KeywordOverload.htm" />
-    <Content Include="Floods.htm" />
+    <Content Include="TestPages\Button\LandingPageReferrerTest.htm" />
+    <Content Include="TestPages\Button\SkipResultsPage.htm" />
+    <Content Include="TestPages\Button\KeywordOverload.htm" />
+    <Content Include="TestPages\Button\Floods.htm" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="SimpleTest.htm" />
+    <Content Include="TestPages\Button\SimpleTest.htm" />
     <Content Include="Views\Button\NoResultsFound.aspx" />
     <Content Include="Views\Button\Index.aspx" />
     <Content Include="Views\Button\NotEnoughInformation.aspx" />
+    <Content Include="Views\Documentation\Button.aspx" />
+    <Content Include="Views\Documentation\Index.aspx" />
+    <Content Include="Views\Documentation\IntelligentLinks.aspx" />
+    <Content Include="Views\Documentation\Widget.aspx" />
+    <Content Include="Views\Home\Index.aspx" />
     <Content Include="Views\LandingPage\Index.aspx" />
     <Content Include="Views\LandingPage\NoResultsFound.aspx" />
     <Content Include="Views\LandingPage\NotEnoughInformation.aspx" />
@@ -130,7 +150,7 @@
     <Content Include="Views\Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Models\IFrame\" />
+    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\GG.DonateAnywhere.Core\GG.DonateAnywhere.Core.csproj">
@@ -143,6 +163,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\LandingPage\LandingPage.Master" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\HomeAndDocs.Master" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Documentation\Documentation.master" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
