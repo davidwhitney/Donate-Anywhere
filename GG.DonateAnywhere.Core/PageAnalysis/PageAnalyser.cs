@@ -11,12 +11,12 @@ namespace GG.DonateAnywhere.Core.PageAnalysis
     public class PageAnalyser : IPageAnalyser
     {
         private readonly IDirectHttpRequestTransport _httpRequestTransport;
-        private readonly SimpleKeywordRankingTextAnalyser _simpleKeywordRankingTextAnalyser;
+        private readonly IKeywordRankingStrategy _keywordRankingStrategy;
 
-        public PageAnalyser(IDirectHttpRequestTransport httpRequestTransport, SimpleKeywordRankingTextAnalyser simpleKeywordRankingTextAnalyser)
+        public PageAnalyser(IDirectHttpRequestTransport httpRequestTransport, IKeywordRankingStrategy keywordRankingStrategy)
         {
             _httpRequestTransport = httpRequestTransport;
-            _simpleKeywordRankingTextAnalyser = simpleKeywordRankingTextAnalyser;
+            _keywordRankingStrategy = keywordRankingStrategy;
         }
 
         public PageReport Analyse(Uri uri)
@@ -24,7 +24,7 @@ namespace GG.DonateAnywhere.Core.PageAnalysis
             var html = _httpRequestTransport.FetchUri(uri);
             var rawText = ExtractPlainTextFromHtml(html);
 
-            var ranking = _simpleKeywordRankingTextAnalyser.RankKeywords(rawText);
+            var ranking = _keywordRankingStrategy.RankKeywords(rawText);
             AdjustKeywordDensityAccordingToSignificantUrlWords(uri, ranking);
 
             return new PageReport {KeywordDensity = ranking};

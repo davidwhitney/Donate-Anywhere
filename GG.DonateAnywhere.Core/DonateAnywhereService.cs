@@ -13,7 +13,7 @@ namespace GG.DonateAnywhere.Core
         private readonly ISearchProvider _searchProvider;
 
         public DonateAnywhereService(ISearchProvider searchProvider)
-            : this(new PageAnalyser(new DirectHttpRequestTransport(), new SimpleKeywordRankingTextAnalyser()), searchProvider)
+            : this(new PageAnalyser(new DirectHttpRequestTransport(), new SimpleKeywordRankingStrategy()), searchProvider)
         {
         }
 

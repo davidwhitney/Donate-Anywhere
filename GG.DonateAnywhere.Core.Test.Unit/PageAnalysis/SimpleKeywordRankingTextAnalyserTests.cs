@@ -14,7 +14,7 @@ namespace GG.DonateAnywhere.Core.Test.Unit.PageAnalysis
         [TestCase(" ")]
         public void RankKeywords_NullEmptyOrWhitespaceSourceDataProvided_ReturnsEmptyRankingCollection(string sourceData)
         {
-            var keywordRankingTextAnalyser = new SimpleKeywordRankingTextAnalyser();
+            var keywordRankingTextAnalyser = new SimpleKeywordRankingStrategy();
             var keywordRanking = keywordRankingTextAnalyser.RankKeywords(sourceData);
 
             Assert.AreEqual(0, keywordRanking.Count);
@@ -23,7 +23,7 @@ namespace GG.DonateAnywhere.Core.Test.Unit.PageAnalysis
         [Test]
         public void RankKeywords_OneToFourCountProvided_RankedInOrder()
         {
-            var keywordRankingTextAnalyser = new SimpleKeywordRankingTextAnalyser();
+            var keywordRankingTextAnalyser = new SimpleKeywordRankingStrategy();
 
             var keywordRanking = keywordRankingTextAnalyser.RankKeywords(OneToFour);
 
@@ -38,7 +38,7 @@ namespace GG.DonateAnywhere.Core.Test.Unit.PageAnalysis
         public void RankKeywords_OneToFourCountProvidedAndBlackListProvidedWhichContainsFour_RankedInOrder()
         {
             var blacklist = new ExcludedWordsRepositoryMock {"four"};
-            var keywordRankingTextAnalyser = new SimpleKeywordRankingTextAnalyser(blacklist);
+            var keywordRankingTextAnalyser = new SimpleKeywordRankingStrategy(blacklist);
 
             var keywordRanking = keywordRankingTextAnalyser.RankKeywords(OneToFour);
 
@@ -51,7 +51,7 @@ namespace GG.DonateAnywhere.Core.Test.Unit.PageAnalysis
         [Test]
         public void RankKeywords_OneToFourCountProvided_RankedWithCorrectCount()
         {
-            var keywordRankingTextAnalyser = new SimpleKeywordRankingTextAnalyser();
+            var keywordRankingTextAnalyser = new SimpleKeywordRankingStrategy();
 
             var keywordRanking = keywordRankingTextAnalyser.RankKeywords(OneToFour);
 

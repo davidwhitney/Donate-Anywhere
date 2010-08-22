@@ -11,89 +11,37 @@ namespace GG.DonateAnywhere.Core.Test.Unit.PageAnalysis
         [Test]
         public void Analyse_HtmlElementNamesOutnumberPlainText_FrequentHtmlElementsNotPresentInTheResultingRanking()
         {
+            var mockRankingStrategy = new KeyworkRankingStrategyMock();
             var transportMock = new HttpRequestTransportMock(File.ReadAllText("TestData/AscendingNumbersInHtml.txt"));
-            var pageAnalyer = new PageAnalyser(transportMock, new SimpleKeywordRankingTextAnalyser());
+            var pageAnalyer = new PageAnalyser(transportMock, mockRankingStrategy);
 
-            var report = pageAnalyer.Analyse(new Uri("http://some.com/url"));
+            pageAnalyer.Analyse(new Uri("http://some.com/url"));
 
-            Assert.IsFalse(report.KeywordDensity.ContainsKey("br"));
+            Assert.IsFalse(mockRankingStrategy.LastRankingRequestPlainText.Contains(" br "));
         }
 
         [Test]
         public void Analyse_DocumentContainsJavascript_JavascriptDataNotPresentInRanking()
         {
+            var mockRankingStrategy = new KeyworkRankingStrategyMock();
             var transportMock = new HttpRequestTransportMock(File.ReadAllText("TestData/AscendingNumbersInHtml.txt"));
-            var pageAnalyer = new PageAnalyser(transportMock, new SimpleKeywordRankingTextAnalyser());
+            var pageAnalyer = new PageAnalyser(transportMock, mockRankingStrategy);
 
-            var report = pageAnalyer.Analyse(new Uri("http://some.com/url"));
+            pageAnalyer.Analyse(new Uri("http://some.com/url"));
 
-            Assert.IsFalse(report.KeywordDensity.ContainsKey("TestableJavascriptVariableString"));
+            Assert.IsFalse(mockRankingStrategy.LastRankingRequestPlainText.Contains("TestableJavascriptVariableString"));
         }
 
         [Test]
         public void Analyse_DocumentContainsStyleSheet_StyleSheetDataNotPresentInRanking()
         {
+            var mockRankingStrategy = new KeyworkRankingStrategyMock();
             var transportMock = new HttpRequestTransportMock(File.ReadAllText("TestData/AscendingNumbersInHtml.txt"));
-            var pageAnalyer = new PageAnalyser(transportMock, new SimpleKeywordRankingTextAnalyser());
+            var pageAnalyer = new PageAnalyser(transportMock, mockRankingStrategy);
 
-            var report = pageAnalyer.Analyse(new Uri("http://some.com/url"));
+            pageAnalyer.Analyse(new Uri("http://some.com/url"));
 
-            Assert.IsFalse(report.KeywordDensity.ContainsKey("testableCssClassName"));
+            Assert.IsFalse(mockRankingStrategy.LastRankingRequestPlainText.Contains("testableCssClassName"));
         }
-
-        [Test]
-        public void Analyse_DocumentContainsNumbersOneToElevenInAscendingOrderAsTextMultipliedByTheirValue_TopRankedKeywordIsEleven()
-        {
-            var transportMock = new HttpRequestTransportMock(File.ReadAllText("TestData/AscendingNumbersInHtml.txt"));
-            var pageAnalyer = new PageAnalyser(transportMock, new SimpleKeywordRankingTextAnalyser());
-
-            var report = pageAnalyer.Analyse(new Uri("http://some.com/url"));
-            
-            var enumer = report.KeywordDensity.GetEnumerator();
-            enumer.MoveNext();
-            Assert.AreEqual("eleven", enumer.Current.Key);
-        }
-
-        [Test]
-        public void Analyse_DocumentContainsNumbersOneToElevenInAscendingOrderAsTextMultipliedByTheirValue_WordsAreRankedInPredictedOrder()
-        {
-            var transportMock = new HttpRequestTransportMock(File.ReadAllText("TestData/AscendingNumbersInHtml.txt"));
-            var pageAnalyer = new PageAnalyser(transportMock, new SimpleKeywordRankingTextAnalyser());
-
-            var report = pageAnalyer.Analyse(new Uri("http://some.com/url"));
-            
-            var enumer = report.KeywordDensity.GetEnumerator();
-            enumer.MoveNext();
-            
-            Assert.AreEqual("eleven", enumer.Current.Key); enumer.MoveNext();
-            Assert.AreEqual("ten", enumer.Current.Key); enumer.MoveNext();
-            Assert.AreEqual("nine", enumer.Current.Key); enumer.MoveNext();
-            Assert.AreEqual("eight", enumer.Current.Key); enumer.MoveNext();
-            Assert.AreEqual("seven", enumer.Current.Key); enumer.MoveNext();
-            Assert.AreEqual("six", enumer.Current.Key); enumer.MoveNext();
-            Assert.AreEqual("five", enumer.Current.Key); enumer.MoveNext();
-            Assert.AreEqual("four", enumer.Current.Key); enumer.MoveNext();
-            Assert.AreEqual("three", enumer.Current.Key); enumer.MoveNext();
-            Assert.AreEqual("two", enumer.Current.Key);
-
-            // One could be in any order with the other words that only occur one time.
-        }
-
-        [Test]
-        public void Analyse_WhenDocumentContainsWordPresentInBlackList_BlackListedWordNotPresentInRanking()
-        {
-            var transportMock = new HttpRequestTransportMock(File.ReadAllText("TestData/AscendingNumbersInHtml.txt"));
-            var excludedWordsRepositoryMock = new ExcludedWordsRepositoryMock {"eleven"};
-            var keywordAnayser = new SimpleKeywordRankingTextAnalyser(excludedWordsRepositoryMock);
-            var pageAnalyer = new PageAnalyser(transportMock, keywordAnayser);
-
-            var report = pageAnalyer.Analyse(new Uri("http://some.com/url"));
-
-            var enumer = report.KeywordDensity.GetEnumerator();
-            enumer.MoveNext();
-
-            Assert.AreEqual("ten", enumer.Current.Key); enumer.MoveNext();
-        }
-
     }
 }

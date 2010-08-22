@@ -17,7 +17,7 @@ namespace GG.DonateAnywhere.Controllers
 
         public LandingPageController()
             : this(new DonateAnywhereRequestContextFactory(), 
-                   new DonateAnywhereService(new PageAnalyser(new DirectHttpRequestTransport(), new SimpleKeywordRankingTextAnalyser()), 
+                   new DonateAnywhereService(new PageAnalyser(new DirectHttpRequestTransport(), new SimpleKeywordRankingStrategy()), 
                    new MockSearchProvider()))
         {
         }

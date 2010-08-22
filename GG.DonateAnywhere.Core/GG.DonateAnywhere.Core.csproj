@@ -53,13 +53,14 @@
     <Compile Include="IDonateAnywhereService.cs" />
     <Compile Include="PageAnalysis\AssemblyResourceExcludedWordsRepository.cs" />
     <Compile Include="PageAnalysis\IExcludedWordsRepository.cs" />
+    <Compile Include="PageAnalysis\IKeywordRankingStrategy.cs" />
     <Compile Include="PageAnalysis\IPageAnalyser.cs" />
     <Compile Include="Searching\ISearchProvider.cs" />
     <Compile Include="PageAnalysis\PageAnalyser.cs" />
     <Compile Include="PageAnalysis\PageReport.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Searching\SearchResult.cs" />
-    <Compile Include="PageAnalysis\SimpleKeywordRankingTextAnalyser.cs" />
+    <Compile Include="PageAnalysis\SimpleKeywordRankingStrategy.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="PageAnalysis\blacklist.txt" />
