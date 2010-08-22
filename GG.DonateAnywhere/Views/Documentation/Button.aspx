@@ -25,8 +25,7 @@
             </div>
             <div class="clear"></div>
         </div>
-
-
+        
         <hr />
 
         <div>
@@ -41,6 +40,18 @@
                 <p>
                     <img src="../../Content/Documentation/Images/button-keyword-overload.png" alt="Screenshot example of button usage with overloaded keyword" />
                 </p>
+            </div>
+            <div class="clear"></div>
+        </div>
+
+        <hr />
+
+        <div>
+            <h3>Button control with Url override for spidering</h3>
+            <div class="leftCol">            
+                <p>&lt;iframe src="/button?UrlContext=http%3A%2F%2Fwww.google.com" scrolling="no" frameborder="0" height="85" width="200"&gt;&lt;/iframe&gt;</p>
+            </div>
+            <div class="rightCol">
             </div>
             <div class="clear"></div>
         </div>
