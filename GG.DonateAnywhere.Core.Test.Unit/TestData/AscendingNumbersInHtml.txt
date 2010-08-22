@@ -1,0 +1,27 @@
+﻿<html>
+<head>
+	<title>PageTitle</title>
+	<script type="text/javascript">
+		var javascriptVariable="TestableJavascriptVariableString";
+	</script>
+	<style type="text/css">
+		.testableCssClassName
+		{
+		}
+	</style>
+</head>
+<body>
+One<br />
+Two Two<br />
+Three Three Three<br />
+Four Four Four Four<br />
+Five Five Five Five Five<br />
+Six Six Six Six Six Six<br />
+Seven Seven Seven Seven Seven Seven Seven<br />
+Eight Eight Eight Eight Eight Eight Eight Eight<br />
+Nine Nine Nine Nine Nine Nine Nine Nine Nine<br />
+Ten Ten Ten Ten Ten Ten Ten Ten Ten Ten<br />
+Eleven Eleven Eleven Eleven Eleven Eleven Eleven Eleven Eleven Eleven Eleven<br />
+Twelve line breaks...<br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+</body>
+</html>

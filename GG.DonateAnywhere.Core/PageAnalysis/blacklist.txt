@@ -111,16 +111,6 @@ west
 recommend
 report
 our
-one
-two
-three
-four
-five
-six
-seven
-eight
-nine
-ten
 about
 which
 mail
@@ -193,7 +183,7 @@ next
 previous
 invite
 survey
-content
+
 links
 css
 browser

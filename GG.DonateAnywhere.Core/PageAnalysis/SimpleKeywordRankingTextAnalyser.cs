@@ -9,7 +9,7 @@ namespace GG.DonateAnywhere.Core.PageAnalysis
         private readonly IExcludedWordsRepository _excludedWordsRepository;
 
         public SimpleKeywordRankingTextAnalyser()
-            : this(new AssemblyResourceExcludedWordsRepository("GG.DonateAnywhere.Core.PageAnalysis.whitelist.txt"))
+            : this(new AssemblyResourceExcludedWordsRepository("GG.DonateAnywhere.Core.PageAnalysis.blacklist.txt"))
         {
         }
 
@@ -20,8 +20,12 @@ namespace GG.DonateAnywhere.Core.PageAnalysis
 
         public IDictionary<string, decimal> RankKeywords(string plainText)
         {
-            plainText = ClenseSourceData(plainText);
+            if(string.IsNullOrWhiteSpace(plainText))
+            {
+                return new Dictionary<string, decimal>();
+            }
 
+            plainText = ClenseSourceData(plainText);
             var ranking = new Dictionary<string, decimal>();
 
             foreach (var word in plainText.Split(' ').Where(word => !string.IsNullOrWhiteSpace(word)))
@@ -50,20 +54,20 @@ namespace GG.DonateAnywhere.Core.PageAnalysis
         {
             source = RemoveSpecialCharacters(source);
             var exclusionList = _excludedWordsRepository.RetrieveExcludedWords();
+            
             var words = source.Split(' ').ToList();
-            foreach(var whitelistedWord in exclusionList)
+            foreach(var blacklistedWord in exclusionList)
             {
-                var word = whitelistedWord;
+                var word = blacklistedWord;
                 words.RemoveAll(s => s == word);
             }
-            words.RemoveAll(s => s.Length <= 3);
 
             return words.Aggregate("", (current, item) => current + (item + " ")).Trim();
         }
 
         private static string RemoveSpecialCharacters(string source)
         {
-            source = source.Replace(Environment.NewLine, "");
+            source = source.Replace(Environment.NewLine, " ");
             source = source.Replace(".", "");
             source = source.Replace(",", "");
             source = source.Replace(";", "");

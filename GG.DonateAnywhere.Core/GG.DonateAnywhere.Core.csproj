@@ -62,7 +62,7 @@
     <Compile Include="PageAnalysis\SimpleKeywordRankingTextAnalyser.cs" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="PageAnalysis\whitelist.txt" />
+    <EmbeddedResource Include="PageAnalysis\blacklist.txt" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

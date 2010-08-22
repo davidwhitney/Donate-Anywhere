@@ -41,15 +41,29 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="PageAnalyserTests.cs" />
+    <Compile Include="PageAnalysis\ExcludedWordsRepositoryMock.cs" />
+    <Compile Include="PageAnalysis\HttpRequestTransportMock.cs" />
+    <Compile Include="PageAnalysis\PageAnalyserTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SimpleKeywordRankingTextAnalyserTests.cs" />
+    <Compile Include="PageAnalysis\SimpleKeywordRankingTextAnalyserTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\GG.DonateAnywhere.Core\GG.DonateAnywhere.Core.csproj">
       <Project>{59A27EE9-91C2-4564-B921-2D2FE0FF7F04}</Project>
       <Name>GG.DonateAnywhere.Core</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Http\" />
+    <Folder Include="Searching\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="TestData\AscendingNumbersInHtml.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TestData\Global-Temperatures-2010-Record.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
