@@ -106,6 +106,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\Documentation\Images\button-direct-to-first-link.png" />
+    <Content Include="Content\Documentation\Images\button-keyword-overload.png" />
+    <Content Include="Content\Documentation\Images\regular-button-usage.png" />
     <Content Include="TestPages\Button\BBC-Chernobyl.htm" />
     <Content Include="Content\donateAnywhereLogo.png" />
     <Content Include="Content\donateAnywhereLogo_small.png" />

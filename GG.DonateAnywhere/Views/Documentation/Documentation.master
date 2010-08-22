@@ -1,6 +1,20 @@
 ﻿<%@ Master Language="C#" MasterPageFile="~/Views/Shared/HomeAndDocs.Master" AutoEventWireup="true" CodeBehind="Documentation.master.cs" Inherits="GG.DonateAnywhere.Views.Documentation.Documentation" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 <asp:ContentPlaceHolder ID="head" runat="server"></asp:ContentPlaceHolder>
+<style type="text/css">
+.leftCol
+{
+    float:left; width: 60%;
+}
+.rightCol
+{
+    float:right; width: 40%;
+}
+.clear
+{
+    clear:both;
+}
+</style>
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="extranavigationitems" runat="server">

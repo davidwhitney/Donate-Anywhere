@@ -5,9 +5,14 @@
         <h1>Intelligent Links</h1>
 
         <h2>Usage examples</h2>
+
+        <div>
         <h3>General purpose link that spiders the referring Url</h3>
         <p>&lt;a href="/LandingPage"&gt;Donate now&lt;/a&gt;</p>
-
+        <ul>
+            <li><a href="/TestPages/Button/LandingPageReferrerTest.htm">Landing Page Referrer Test</a></li>
+        </ul>
+        </div>
 
 </asp:Content>
 
