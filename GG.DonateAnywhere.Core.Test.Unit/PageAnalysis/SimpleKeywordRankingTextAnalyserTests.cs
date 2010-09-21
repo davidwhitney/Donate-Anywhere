@@ -1,5 +1,6 @@
 ﻿using System;
 using GG.DonateAnywhere.Core.PageAnalysis;
+using GG.DonateAnywhere.Core.Sanitise;
 using NUnit.Framework;
 
 namespace GG.DonateAnywhere.Core.Test.Unit.PageAnalysis
@@ -38,7 +39,7 @@ namespace GG.DonateAnywhere.Core.Test.Unit.PageAnalysis
         public void RankKeywords_OneToFourCountProvidedAndBlackListProvidedWhichContainsFour_RankedInOrder()
         {
             var blacklist = new ExcludedWordsRepositoryMock {"four"};
-            var keywordRankingTextAnalyser = new SimpleKeywordRankingStrategy(blacklist);
+            var keywordRankingTextAnalyser = new SimpleKeywordRankingStrategy(new ContentCleaner(blacklist));
 
             var keywordRanking = keywordRankingTextAnalyser.RankKeywords(OneToFour);
 

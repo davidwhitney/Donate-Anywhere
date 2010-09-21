@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using GG.DonateAnywhere.Core.Http;
 using GG.DonateAnywhere.Core.PageAnalysis;
+using GG.DonateAnywhere.Core.Sanitise;
 using GG.DonateAnywhere.Core.Searching;
 
 namespace GG.DonateAnywhere.Core
@@ -13,7 +14,7 @@ namespace GG.DonateAnywhere.Core
         private readonly ISearchProvider _searchProvider;
 
         public DonateAnywhereService(ISearchProvider searchProvider)
-            : this(new PageAnalyser(new DirectHttpRequestTransport(), new SimpleKeywordRankingStrategy()), searchProvider)
+            : this(new PageAnalyser(new DirectHttpRequestTransport(), new SimpleKeywordRankingStrategy(), new ContentCleaner()), searchProvider)
         {
         }
 
@@ -56,24 +57,18 @@ namespace GG.DonateAnywhere.Core
             var topResults = new List<SearchResult>();
             var bottomResults = new List<SearchResult>();
 
+            int boostedInsert = 0;
+
             foreach(var item in top4KeywordsResults)
             {
-                if (item.Title.ToLower().Contains(keywords[0])
-                    || item.Title.ToLower().Contains(keywords[1])
-                    || item.Title.ToLower().Contains(keywords[2])
-                    || item.Description.ToLower().Contains(keywords[0])
-                    || item.Description.ToLower().Contains(keywords[1])
-                    || item.Description.ToLower().Contains(keywords[2]))
+                if (item.Title.ToLower().Contains(keywords[0]) && item.Description.ToLower().Contains(keywords[0]))
                 {
-                    if (item.Title.ToLower().Contains(keywords[0])
-                        && item.Description.ToLower().Contains(keywords[0]))
-                    {
-                        topResults.Insert(0, item);
-                    }
-                    else
-                    {
-                        topResults.Add(item);
-                    }
+                    topResults.Insert(boostedInsert, item);
+                    boostedInsert++;
+                }
+                else if (item.Title.ToLower().Contains(keywords[1]) && item.Description.ToLower().Contains(keywords[1]))
+                {
+                    topResults.Add(item);
                 }
                 else
                 {

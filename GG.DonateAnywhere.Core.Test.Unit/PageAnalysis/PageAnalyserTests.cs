@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using GG.DonateAnywhere.Core.PageAnalysis;
+using GG.DonateAnywhere.Core.Sanitise;
 using NUnit.Framework;
 
 namespace GG.DonateAnywhere.Core.Test.Unit.PageAnalysis
@@ -13,7 +14,7 @@ namespace GG.DonateAnywhere.Core.Test.Unit.PageAnalysis
         {
             var mockRankingStrategy = new KeyworkRankingStrategyMock();
             var transportMock = new HttpRequestTransportMock(File.ReadAllText("TestData/AscendingNumbersInHtml.txt"));
-            var pageAnalyer = new PageAnalyser(transportMock, mockRankingStrategy);
+            var pageAnalyer = new PageAnalyser(transportMock, mockRankingStrategy, new ContentCleaner());
 
             pageAnalyer.Analyse(new Uri("http://some.com/url"));
 
@@ -25,7 +26,7 @@ namespace GG.DonateAnywhere.Core.Test.Unit.PageAnalysis
         {
             var mockRankingStrategy = new KeyworkRankingStrategyMock();
             var transportMock = new HttpRequestTransportMock(File.ReadAllText("TestData/AscendingNumbersInHtml.txt"));
-            var pageAnalyer = new PageAnalyser(transportMock, mockRankingStrategy);
+            var pageAnalyer = new PageAnalyser(transportMock, mockRankingStrategy, new ContentCleaner());
 
             pageAnalyer.Analyse(new Uri("http://some.com/url"));
 
@@ -37,7 +38,7 @@ namespace GG.DonateAnywhere.Core.Test.Unit.PageAnalysis
         {
             var mockRankingStrategy = new KeyworkRankingStrategyMock();
             var transportMock = new HttpRequestTransportMock(File.ReadAllText("TestData/AscendingNumbersInHtml.txt"));
-            var pageAnalyer = new PageAnalyser(transportMock, mockRankingStrategy);
+            var pageAnalyer = new PageAnalyser(transportMock, mockRankingStrategy, new ContentCleaner());
 
             pageAnalyer.Analyse(new Uri("http://some.com/url"));
 

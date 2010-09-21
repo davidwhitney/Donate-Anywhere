@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using System.Web;
 using GG.DonateAnywhere.Core.Http;
+using GG.DonateAnywhere.Core.Sanitise;
 using HtmlAgilityPack;
 
 namespace GG.DonateAnywhere.Core.PageAnalysis
@@ -12,11 +13,13 @@ namespace GG.DonateAnywhere.Core.PageAnalysis
     {
         private readonly IDirectHttpRequestTransport _httpRequestTransport;
         private readonly IKeywordRankingStrategy _keywordRankingStrategy;
+        private readonly ContentCleaner _contentCleaner;
 
-        public PageAnalyser(IDirectHttpRequestTransport httpRequestTransport, IKeywordRankingStrategy keywordRankingStrategy)
+        public PageAnalyser(IDirectHttpRequestTransport httpRequestTransport, IKeywordRankingStrategy keywordRankingStrategy, ContentCleaner contentCleaner)
         {
             _httpRequestTransport = httpRequestTransport;
             _keywordRankingStrategy = keywordRankingStrategy;
+            _contentCleaner = contentCleaner;
         }
 
         public PageReport Analyse(Uri uri)
@@ -31,7 +34,7 @@ namespace GG.DonateAnywhere.Core.PageAnalysis
 
             Uprank(ranking, importantUriWords, 30);
             Uprank(ranking, emphasisedWords, 20);
-            Uprank(ranking, emphasisedWords.Take(1), 10);
+            Uprank(ranking, emphasisedWords.Take(1), 100);
 
             var orderedRanking = ranking.OrderBy(x => x.Value).Reverse().ToDictionary(x => x.Key, x => x.Value);
 
@@ -39,7 +42,7 @@ namespace GG.DonateAnywhere.Core.PageAnalysis
         }
 
 
-        private static IEnumerable<string> ExtractImportantWordsFromHtml(string html)
+        private IEnumerable<string> ExtractImportantWordsFromHtml(string html)
         {
             var doc = new HtmlDocument();
             doc.LoadHtml(html);
@@ -47,24 +50,28 @@ namespace GG.DonateAnywhere.Core.PageAnalysis
             var upRankedwords = new List<string>();
 
             var titleNode = doc.DocumentNode.SelectNodes("//title");
-            if (titleNode != null)
-            {
-                foreach (var word in titleNode.Select(node => node.InnerText.Split(' ').Take(3)).SelectMany(words => words.Where(word => !upRankedwords.Contains(word))))
-                {
-                    upRankedwords.Add(word);
-                }
-            }
+            AddCleanedWordsFromNode(titleNode, upRankedwords);
 
             var h1Node = doc.DocumentNode.SelectNodes("//h1");
-            if(h1Node != null)
-            {
-                foreach (var word in h1Node.Select(node => node.InnerText.Split(' ')).SelectMany(words => words.Where(word => !upRankedwords.Contains(word))))
-                {
-                    upRankedwords.Add(word);
-                }
-            }
+            AddCleanedWordsFromNode(h1Node, upRankedwords);
 
             return upRankedwords;
+        }
+
+        private void AddCleanedWordsFromNode(HtmlNodeCollection containingNode, ICollection<string> upRankedwords)
+        {
+            if (containingNode != null)
+            {
+                foreach (var word in
+                    containingNode.Select(node => node.InnerText.Split(' ').Take(3)).SelectMany(words => words.Where(word => !upRankedwords.Contains(word))).Where(word => !string.IsNullOrWhiteSpace(word)))
+                {
+                    var cleanWord = _contentCleaner.ClenseSourceData(word);
+                    if (!string.IsNullOrWhiteSpace(cleanWord))
+                    {
+                        upRankedwords.Add(_contentCleaner.ClenseSourceData(word));
+                    }
+                }
+            }
         }
 
         private static string ExtractPlainTextFromHtml(string html)
@@ -83,7 +90,18 @@ namespace GG.DonateAnywhere.Core.PageAnalysis
 
         private static IEnumerable<string> ExtractKeywordsFromUri(Uri uri)
         {
-            return uri.Segments[uri.Segments.Length-1].Split('_', '-', '/', ')', '(').ToList();
+            var words = uri.Segments[uri.Segments.Length-1].Split('_', '-', '/', ')', '(').ToList();
+            for (int index = 0; index < words.Count; index++)
+            {
+                words[index] = words[index].Replace(".html", "");
+                words[index] = words[index].Replace(".htm", "");
+                words[index] = words[index].Replace(".php", "");
+                words[index] = words[index].Replace(".jsp", "");
+                words[index] = words[index].Replace(".asp", "");
+                words[index] = words[index].Replace(".aspx", "");
+            }
+
+            return words;
         }
 
         public static void Uprank(IDictionary<string, decimal> ranking, IEnumerable<string> words, int modifier)

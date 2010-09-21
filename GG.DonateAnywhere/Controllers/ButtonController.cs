@@ -7,6 +7,7 @@ using GG.DonateAnywhere.Code;
 using GG.DonateAnywhere.Core;
 using GG.DonateAnywhere.Core.Http;
 using GG.DonateAnywhere.Core.PageAnalysis;
+using GG.DonateAnywhere.Core.Sanitise;
 using GG.DonateAnywhere.Core.Searching;
 
 namespace GG.DonateAnywhere.Controllers
@@ -17,8 +18,8 @@ namespace GG.DonateAnywhere.Controllers
         private readonly IDonateAnywhereService _donateAnywhereService;
 
         public ButtonController()
-            : this(new DonateAnywhereRequestContextFactory(), 
-                   new DonateAnywhereService(new PageAnalyser(new DirectHttpRequestTransport(), new SimpleKeywordRankingStrategy()), 
+            : this(new DonateAnywhereRequestContextFactory(),
+                   new DonateAnywhereService(new PageAnalyser(new DirectHttpRequestTransport(), new SimpleKeywordRankingStrategy(), new ContentCleaner()), 
                    new ApiSearchProvider()))
         {
         }
