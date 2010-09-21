@@ -5,11 +5,23 @@
 
 <asp:Content ID="body" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 You have now landed on the selection page where we suggest a few things you might want to donate to<br />
-<ul>
-<%foreach (var result in Model.Results){%>
-<li><%:result.Title %> - <%:result.Description %> - <%:result.Url %></li>
-<%}%>
-</ul>
+<div style="float: left;">
+<b>Suggested results</b><br />
+    <ul>
+    <%foreach (var result in Model.Results){%>
+    <li><%:result.Title %> - <%:result.Description %> - <%:result.Url %></li>
+    <%}%>
+    </ul>
+</div>
+<div style="float: right;">
+<b>You might also be interested in</b><br />
+    <ul>
+    <%foreach (var result in Model.RelatedResults){%>
+    <li><%:result.Title %> - <%:result.Description %> - <%:result.Url %></li>
+    <%}%>
+    </ul>
+</div>
+<div style="clear: both;"></div>
 
 </asp:Content>
 
