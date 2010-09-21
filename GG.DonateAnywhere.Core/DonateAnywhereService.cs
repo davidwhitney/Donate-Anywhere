@@ -32,23 +32,49 @@ namespace GG.DonateAnywhere.Core
 
             var keywords = CalculateKeywordsForSearchCriteria(donateAnywhereContext);
             var top4KeywordsResults = _searchProvider.Search(keywords.Take(4).ToList()).Take(10).ToList();
-            var relatedResults = _searchProvider.Search(keywords);
+            var orderedTopResults = SortTopResultsByKeywordRelevance(keywords, top4KeywordsResults);
 
-            var relatedDictionary = relatedResults.ToDictionary(relatedItem => relatedItem.Title);
-            foreach (var key in top4KeywordsResults.Select(item => item.Title).Where(relatedDictionary.ContainsKey))
-            {
-                relatedDictionary.Remove(key);
-            }
+            var relatedResults = _searchProvider.Search(keywords);
+            var relatedDictionary = DeduplicateRelatedResults(relatedResults, top4KeywordsResults);
 
             var donateAnywhereResult = new DonateAnywhereResult
                                            {
                                                Keywords = keywords,
-                                               Results = top4KeywordsResults.Take(10).ToList(),
+                                               Results = orderedTopResults.Take(10).ToList(),
                                                RelatedResults = relatedDictionary.Values.Take(10).ToList(),
                                                RequestContext = donateAnywhereContext
                                            };
 
             return donateAnywhereResult;
+        }
+
+        private static IEnumerable<SearchResult> SortTopResultsByKeywordRelevance(IList<string> keywords, List<SearchResult> top4KeywordsResults)
+        {
+            top4KeywordsResults.Reverse();
+            var orderedTopResults = new List<SearchResult>();
+            foreach(var item in top4KeywordsResults)
+            {
+                if (item.Title.Contains(keywords[0])
+                    && item.Title.Contains(keywords[1]))
+                {
+                    orderedTopResults.Insert(0, item);
+                }
+                else
+                {
+                    orderedTopResults.Add(item);
+                }
+            }
+            return orderedTopResults;
+        }
+
+        private static Dictionary<string, SearchResult> DeduplicateRelatedResults(IEnumerable<SearchResult> relatedResults, IEnumerable<SearchResult> top4KeywordsResults)
+        {
+            var relatedDictionary = relatedResults.ToDictionary(relatedItem => relatedItem.Title);
+            foreach (var key in top4KeywordsResults.Select(item => item.Title).Where(relatedDictionary.ContainsKey))
+            {
+                relatedDictionary.Remove(key);
+            }
+            return relatedDictionary;
         }
 
         private List<string> CalculateKeywordsForSearchCriteria(IDonateAnywhereRequestContext donateAnywhereContext)
