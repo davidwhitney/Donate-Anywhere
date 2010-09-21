@@ -50,6 +50,8 @@
     <Compile Include="DonateAnywhereRequestContext.cs" />
     <Compile Include="DonateAnywhereResult.cs" />
     <Compile Include="DonateAnywhereService.cs" />
+    <Compile Include="Sanitise\CaseCorrectionExtensions.cs" />
+    <Compile Include="Sanitise\HtmlCleaner.cs" />
     <Compile Include="Http\DirectHttpRequestTransport.cs" />
     <Compile Include="Http\IDirectHttpRequestTransport.cs" />
     <Compile Include="IDonateAnywhereRequestContext.cs" />

@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using GG.DonateAnywhere.Core.Sanitise;
 using JustGiving.Api.Sdk;
 
 namespace GG.DonateAnywhere.Core.Searching
@@ -13,11 +14,13 @@ namespace GG.DonateAnywhere.Core.Searching
 
             var all = client.Search.CharitySearch(string.Join(" ", keywords));
 
+            var cleaner = new HtmlCleaner.HtmlCleaner();
+
             var results = all.Results.Take(20).ToDictionary(charitySearchResult => charitySearchResult.CharityId,
                                                            charitySearchResult => new SearchResult
                                                                                       {
-                                                                                          Description = charitySearchResult.Description,
-                                                                                          Title = charitySearchResult.Name,
+                                                                                          Description = cleaner.RemoveHtml(charitySearchResult.Description),
+                                                                                          Title = cleaner.RemoveHtml(charitySearchResult.Name),
                                                                                           Url = "url here"
                                                                                       });
 
