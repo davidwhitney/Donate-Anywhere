@@ -34,6 +34,9 @@
     <Reference Include="HtmlAgilityPack">
       <HintPath>..\ExternalLibs\HtmlAgilityPack.dll</HintPath>
     </Reference>
+    <Reference Include="JustGiving.Api.Sdk">
+      <HintPath>..\..\..\..\..\..\JustGivingGitHub\JustGiving.Api.Sdk\DotNet\src\JustGiving.Api.Sdk\bin\Release\JustGiving.Api.Sdk.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Web" />
@@ -59,6 +62,7 @@
     <Compile Include="PageAnalysis\PageAnalyser.cs" />
     <Compile Include="PageAnalysis\PageReport.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Searching\ApiSearchProvider.cs" />
     <Compile Include="Searching\SearchResult.cs" />
     <Compile Include="PageAnalysis\SimpleKeywordRankingStrategy.cs" />
   </ItemGroup>

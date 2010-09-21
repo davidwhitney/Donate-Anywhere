@@ -8,6 +8,7 @@ namespace GG.DonateAnywhere.Core
     {
         public IList<string> Keywords { get; set; }
         public IList<SearchResult> Results { get; set; }
+        public IList<SearchResult> RelatedResults { get; set; }
         public IDonateAnywhereRequestContext RequestContext { get; set; }
     }
 }

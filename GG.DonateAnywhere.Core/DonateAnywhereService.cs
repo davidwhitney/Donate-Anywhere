@@ -31,12 +31,20 @@ namespace GG.DonateAnywhere.Core
             }
 
             var keywords = CalculateKeywordsForSearchCriteria(donateAnywhereContext);
-            var results = _searchProvider.Search(keywords);
+            var top4KeywordsResults = _searchProvider.Search(keywords.Take(4).ToList()).Take(10).ToList();
+            var relatedResults = _searchProvider.Search(keywords);
+
+            var relatedDictionary = relatedResults.ToDictionary(relatedItem => relatedItem.Title);
+            foreach (var key in top4KeywordsResults.Select(item => item.Title).Where(relatedDictionary.ContainsKey))
+            {
+                relatedDictionary.Remove(key);
+            }
 
             var donateAnywhereResult = new DonateAnywhereResult
                                            {
                                                Keywords = keywords,
-                                               Results = results,
+                                               Results = top4KeywordsResults.Take(10).ToList(),
+                                               RelatedResults = relatedDictionary.Values.Take(10).ToList(),
                                                RequestContext = donateAnywhereContext
                                            };
 
