@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using GG.DonateAnywhere.Core.Sanitise;
 using JustGiving.Api.Sdk;
 
 namespace GG.DonateAnywhere.Core.Searching
@@ -12,7 +11,7 @@ namespace GG.DonateAnywhere.Core.Searching
             var clientConfig = new ClientConfiguration("https://api.staging.justgiving.com/", "decbf1d2", 1);
             var client = new JustGivingClient(clientConfig);
 
-            var all = client.Search.CharitySearch(string.Join(" ", keywords));
+            var all = client.Search.CharitySearch(string.Join(" + ", keywords));
 
             var cleaner = new HtmlCleaner.HtmlCleaner();
 

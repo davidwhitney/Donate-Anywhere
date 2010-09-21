@@ -23,11 +23,44 @@ namespace GG.DonateAnywhere.Core.PageAnalysis
         {
             var html = _httpRequestTransport.FetchUri(uri);
             var rawText = ExtractPlainTextFromHtml(html);
+            var highlightedWords = ExtractImportantWordsFromHtml(html);
 
             var ranking = _keywordRankingStrategy.RankKeywords(rawText);
             AdjustKeywordDensityAccordingToSignificantUrlWords(uri, ranking);
+            AdjustKeywordDensityAccordingToSignificantDocumentContent(ranking, highlightedWords);
 
-            return new PageReport {KeywordDensity = ranking};
+            var orderedRanking = ranking.OrderBy(x => x.Value).Reverse().ToDictionary(x => x.Key, x => x.Value);
+
+            return new PageReport { KeywordDensity = orderedRanking };
+        }
+
+
+        private static IEnumerable<string> ExtractImportantWordsFromHtml(string html)
+        {
+            var doc = new HtmlDocument();
+            doc.LoadHtml(html);
+
+            var upRankedwords = new List<string>();
+
+            var titleNode = doc.DocumentNode.SelectNodes("//title");
+            if (titleNode != null)
+            {
+                foreach (var word in titleNode.Select(node => node.InnerText.Split(' ').Take(3)).SelectMany(words => words.Where(word => !upRankedwords.Contains(word))))
+                {
+                    upRankedwords.Add(word);
+                }
+            }
+
+            var h1Node = doc.DocumentNode.SelectNodes("//h1");
+            if(h1Node != null)
+            {
+                foreach (var word in h1Node.Select(node => node.InnerText.Split(' ')).SelectMany(words => words.Where(word => !upRankedwords.Contains(word))))
+                {
+                    upRankedwords.Add(word);
+                }
+            }
+
+            return upRankedwords;
         }
 
         private static string ExtractPlainTextFromHtml(string html)
@@ -48,12 +81,18 @@ namespace GG.DonateAnywhere.Core.PageAnalysis
         {
             var parts = uri.Segments[uri.Segments.Length-1].Split('_', '-', '/', ')', '(');
 
-            foreach (var extraSignificantKeyword in parts.Select(urlPart => urlPart.ToLower()).Where(extraSignificantKeyword => ranking.ContainsKey(extraSignificantKeyword)))
+            foreach (var extraSignificantKeyword in parts.Select(urlPart => urlPart.ToLower()).Where(ranking.ContainsKey))
+            {
+                ranking[extraSignificantKeyword] += 30;
+            }
+        }
+
+        private static void AdjustKeywordDensityAccordingToSignificantDocumentContent(IDictionary<string, decimal> ranking, IEnumerable<string> highlightedWords)
+        {
+            foreach (var extraSignificantKeyword in highlightedWords.Select(word => word.ToLower()).Where(ranking.ContainsKey))
             {
                 ranking[extraSignificantKeyword] += 20;
             }
-
-            ranking = ranking.OrderBy(x => x.Value).Reverse().ToDictionary(x => x.Key, x => x.Value);
         }
     }
 }

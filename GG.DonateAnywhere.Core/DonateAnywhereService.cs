@@ -33,6 +33,7 @@ namespace GG.DonateAnywhere.Core
             var keywords = CalculateKeywordsForSearchCriteria(donateAnywhereContext);
             var top4KeywordsResults = _searchProvider.Search(keywords.Take(4).ToList()).Take(10).ToList();
             var orderedTopResults = SortTopResultsByKeywordRelevance(keywords, top4KeywordsResults);
+            orderedTopResults = FilterResultsThatDontMentionTop4Keywords(keywords, orderedTopResults);
 
             var rawRelatedResults = _searchProvider.Search(keywords).ToList();
             var relatedDictionary = DeduplicateRelatedResults(rawRelatedResults, top4KeywordsResults);
@@ -73,6 +74,28 @@ namespace GG.DonateAnywhere.Core
             }
 
             topResults.AddRange(bottomResults);
+
+            return topResults;
+        }
+
+        private static IEnumerable<SearchResult> FilterResultsThatDontMentionTop4Keywords(IList<string> keywords, IEnumerable<SearchResult> top4KeywordsResults)
+        {
+            var topResults = new List<SearchResult>();
+
+            foreach(var item in top4KeywordsResults)
+            {
+                if (item.Title.ToLower().Contains(keywords[0])
+                    || item.Title.ToLower().Contains(keywords[1])
+                    || item.Title.ToLower().Contains(keywords[2])
+                    || item.Title.ToLower().Contains(keywords[3])
+                    || item.Description.ToLower().Contains(keywords[0])
+                    || item.Description.ToLower().Contains(keywords[1])
+                    || item.Description.ToLower().Contains(keywords[2])
+                    || item.Description.ToLower().Contains(keywords[3]))
+                {
+                    topResults.Add(item);
+                }
+            }
 
             return topResults;
         }

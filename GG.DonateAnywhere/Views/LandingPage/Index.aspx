@@ -5,7 +5,7 @@
 
 <asp:Content ID="body" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 You have now landed on the selection page where we suggest a few things you might want to donate to<br />
-<div style="float: left;">
+<div style="float: left; width: 50%;">
 <b>Suggested results</b><br />
     <ul>
     <%foreach (var result in Model.Results){%>
@@ -13,7 +13,7 @@ You have now landed on the selection page where we suggest a few things you migh
     <%}%>
     </ul>
 </div>
-<div style="float: right;">
+<div style="float: right; width: 50%;">
 <b>You might also be interested in</b><br />
     <ul>
     <%foreach (var result in Model.RelatedResults){%>
