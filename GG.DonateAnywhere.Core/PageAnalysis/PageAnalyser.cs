@@ -23,11 +23,15 @@ namespace GG.DonateAnywhere.Core.PageAnalysis
         {
             var html = _httpRequestTransport.FetchUri(uri);
             var rawText = ExtractPlainTextFromHtml(html);
-            var highlightedWords = ExtractImportantWordsFromHtml(html);
-
+            
             var ranking = _keywordRankingStrategy.RankKeywords(rawText);
-            AdjustKeywordDensityAccordingToSignificantUrlWords(uri, ranking);
-            AdjustKeywordDensityAccordingToSignificantDocumentContent(ranking, highlightedWords);
+
+            var emphasisedWords = ExtractImportantWordsFromHtml(html);
+            var importantUriWords = ExtractKeywordsFromUri(uri);
+
+            Uprank(ranking, importantUriWords, 30);
+            Uprank(ranking, emphasisedWords, 20);
+            Uprank(ranking, emphasisedWords.Take(1), 10);
 
             var orderedRanking = ranking.OrderBy(x => x.Value).Reverse().ToDictionary(x => x.Key, x => x.Value);
 
@@ -77,22 +81,18 @@ namespace GG.DonateAnywhere.Core.PageAnalysis
             return rawText;
         }
 
-        private static void AdjustKeywordDensityAccordingToSignificantUrlWords(Uri uri, IDictionary<string, decimal> ranking)
+        private static IEnumerable<string> ExtractKeywordsFromUri(Uri uri)
         {
-            var parts = uri.Segments[uri.Segments.Length-1].Split('_', '-', '/', ')', '(');
+            return uri.Segments[uri.Segments.Length-1].Split('_', '-', '/', ')', '(').ToList();
+        }
 
-            foreach (var extraSignificantKeyword in parts.Select(urlPart => urlPart.ToLower()).Where(ranking.ContainsKey))
+        public static void Uprank(IDictionary<string, decimal> ranking, IEnumerable<string> words, int modifier)
+        {
+            foreach (var extraSignificantKeyword in words.Select(word => word.ToLower()).Where(ranking.ContainsKey))
             {
-                ranking[extraSignificantKeyword] += 30;
+                ranking[extraSignificantKeyword] += modifier;
             }
         }
 
-        private static void AdjustKeywordDensityAccordingToSignificantDocumentContent(IDictionary<string, decimal> ranking, IEnumerable<string> highlightedWords)
-        {
-            foreach (var extraSignificantKeyword in highlightedWords.Select(word => word.ToLower()).Where(ranking.ContainsKey))
-            {
-                ranking[extraSignificantKeyword] += 20;
-            }
-        }
     }
 }
