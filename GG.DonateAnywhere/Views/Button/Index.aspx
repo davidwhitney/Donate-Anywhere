@@ -6,10 +6,9 @@
 <asp:Content ID="body" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 <% if(Model.RequestContext.ShowResultsPage) {%>
 <a href="/LandingPage?Keywords=<%: string.Join(",", Model.Keywords) %>" target="_parent" class="donateAnywhereButton"><span>Make a difference</span><br /><span>Donate Now</span></a>
-</div>
 <%} %>
 <% if(!Model.RequestContext.ShowResultsPage) {%>
-<a  href="<%=Model.Results[0].Url %>" target="_parent" class="donateAnywhereButton"><span>Donate To <%:Model.Results[0].Title %></span></a>
+<a  href="http://www.justgiving.com/donation/direct/charity/<%:Model.Results[0].CharityId%>" target="_parent" class="donateAnywhereButton"><span>Donate To <%:Model.Results[0].Title %></span></a>
 <%} %>
 </asp:Content>
 

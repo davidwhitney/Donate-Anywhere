@@ -9,10 +9,10 @@ namespace GG.DonateAnywhere.Code
         {
             var results = new List<SearchResult>
                               {
-                                  new SearchResult { Title = "Result 1", Description = "Mock description 1", Url = "http://tempuri.org/1" },
-                                  new SearchResult { Title = "Result 2", Description = "Mock description 2", Url = "http://tempuri.org/2" },
-                                  new SearchResult { Title = "Result 3", Description = "Mock description 3", Url = "http://tempuri.org/3" },
-                                  new SearchResult { Title = "Result 4", Description = "Mock description 4", Url = "http://tempuri.org/4" }
+                                  new SearchResult { Title = "Result 1", Description = "Mock description 1", CharityId = "1" },
+                                  new SearchResult { Title = "Result 2", Description = "Mock description 2", CharityId = "2" },
+                                  new SearchResult { Title = "Result 3", Description = "Mock description 3", CharityId = "3" },
+                                  new SearchResult { Title = "Result 4", Description = "Mock description 4", CharityId = "4" }
                               };
 
             return results;

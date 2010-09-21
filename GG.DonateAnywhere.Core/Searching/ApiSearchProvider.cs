@@ -20,7 +20,7 @@ namespace GG.DonateAnywhere.Core.Searching
                                                                                       {
                                                                                           Description = cleaner.RemoveHtml(charitySearchResult.Description),
                                                                                           Title = cleaner.RemoveHtml(charitySearchResult.Name),
-                                                                                          Url = "url here"
+                                                                                          CharityId = charitySearchResult.CharityId
                                                                                       });
 
             return results.Values.ToList();

@@ -9,7 +9,7 @@ You have now landed on the selection page where we suggest a few things you migh
 <b>Suggested results</b><br />
     <ul>
     <%foreach (var result in Model.Results){%>
-    <li><%:result.Title %> - <%=result.Description %> - <%:result.Url %></li>
+    <li><a href="http://www.justgiving.com/donation/direct/charity/<%:result.CharityId %>"><%:result.Title %></a> - <%=result.Description %></li>
     <%}%>
     </ul>
 </div>
@@ -17,7 +17,7 @@ You have now landed on the selection page where we suggest a few things you migh
 <b>You might also be interested in</b><br />
     <ul>
     <%foreach (var result in Model.RelatedResults){%>
-    <li><%:result.Title %> - <%=result.Description %> - <%:result.Url %></li>
+    <li><a href="http://www.justgiving.com/donation/direct/charity/<%:result.CharityId %>"><%:result.Title %></a> - <%=result.Description %></li>
     <%}%>
     </ul>
 </div>
