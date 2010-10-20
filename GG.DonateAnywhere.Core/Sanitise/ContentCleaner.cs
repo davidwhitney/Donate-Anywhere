@@ -43,6 +43,8 @@ namespace GG.DonateAnywhere.Core.Sanitise
         public string RemoveSpecialCharacters(string source)
         {
             source = source.Replace(Environment.NewLine, " ");
+            source = source.Replace("\t", " ");
+            source = source.Replace("\n", " ");
             source = source.Replace(".", "");
             source = source.Replace(",", "");
             source = source.Replace(";", "");
