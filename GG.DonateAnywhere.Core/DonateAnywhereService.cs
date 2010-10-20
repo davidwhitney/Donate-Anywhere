@@ -59,6 +59,15 @@ namespace GG.DonateAnywhere.Core
 
             int boostedInsert = 0;
 
+            if(keywords.Count < 1)
+            {
+                keywords.Insert(0, string.Empty);
+            }
+            if (keywords.Count < 2)
+            {
+                keywords.Insert(1, string.Empty);
+            }
+
             foreach(var item in top4KeywordsResults)
             {
                 if (item.Title.ToLower().Contains(keywords[0]) && item.Description.ToLower().Contains(keywords[0]))
