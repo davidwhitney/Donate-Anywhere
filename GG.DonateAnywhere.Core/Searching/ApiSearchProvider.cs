@@ -8,7 +8,7 @@ namespace GG.DonateAnywhere.Core.Searching
     {
         public IList<SearchResult> Search(List<string> keywords)
         {
-            var clientConfig = new ClientConfiguration("https://api.staging.justgiving.com/", "decbf1d2", 1);
+            var clientConfig = new ClientConfiguration("https://api-staging.justgiving.com/", "decbf1d2", 1);
             var client = new JustGivingClient(clientConfig);
 
             var all = client.Search.CharitySearch(string.Join(" + ", keywords));

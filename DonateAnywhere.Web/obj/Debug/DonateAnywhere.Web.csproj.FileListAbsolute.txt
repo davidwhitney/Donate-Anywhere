@@ -1,0 +1,16 @@
+D:\github\Donate-Anywhere\DonateAnywhere.Web\obj\Debug\DonateAnywhere.Web.csprojResolveAssemblyReference.cache
+D:\github\Donate-Anywhere\DonateAnywhere.Web\bin\DonateAnywhere.Web.dll
+D:\github\Donate-Anywhere\DonateAnywhere.Web\bin\DonateAnywhere.Web.pdb
+D:\github\Donate-Anywhere\DonateAnywhere.Web\bin\EntityFramework.dll
+D:\github\Donate-Anywhere\DonateAnywhere.Web\bin\GG.DonateAnywhere.Core.dll
+D:\github\Donate-Anywhere\DonateAnywhere.Web\bin\HtmlAgilityPack.dll
+D:\github\Donate-Anywhere\DonateAnywhere.Web\bin\JustGiving.Api.Sdk.dll
+D:\github\Donate-Anywhere\DonateAnywhere.Web\bin\Microsoft.Http.dll
+D:\github\Donate-Anywhere\DonateAnywhere.Web\bin\GG.DonateAnywhere.Core.pdb
+D:\github\Donate-Anywhere\DonateAnywhere.Web\bin\EntityFramework.xml
+D:\github\Donate-Anywhere\DonateAnywhere.Web\bin\HtmlAgilityPack.pdb
+D:\github\Donate-Anywhere\DonateAnywhere.Web\bin\HtmlAgilityPack.xml
+D:\github\Donate-Anywhere\DonateAnywhere.Web\bin\JustGiving.Api.Sdk.pdb
+D:\github\Donate-Anywhere\DonateAnywhere.Web\bin\Microsoft.Http.pdb
+D:\github\Donate-Anywhere\DonateAnywhere.Web\obj\Debug\DonateAnywhere.Web.dll
+D:\github\Donate-Anywhere\DonateAnywhere.Web\obj\Debug\DonateAnywhere.Web.pdb
