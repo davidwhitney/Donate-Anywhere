@@ -48,9 +48,13 @@ namespace DonateAnywhere.Web.App_Start
             kernel.Bind<IDonateAnywhereService>().To<DonateAnywhereService>();
 
             kernel.Bind<ISearchProvider>().To<ApiSearchProvider>();
-            
+
+            kernel.Bind<Cache>().ToSelf().InSingletonScope();
+            kernel.Bind<IDirectHttpRequestTransport>().To<CachingHttpGetter>();
+            kernel.Bind<IDirectHttpRequestTransport>().To<DirectHttpRequestTransport>().WhenInjectedInto<CachingHttpGetter>();
+
+
             kernel.Bind<IPageAnalyser>().To<PageAnalyser>();
-            kernel.Bind<IDirectHttpRequestTransport>().To<DirectHttpRequestTransport>();
             kernel.Bind<IKeywordRankingStrategy>().To<SimpleKeywordRankingStrategy>();
             kernel.Bind<ContentCleaner>().ToSelf();
             kernel.Bind<IExcludedWordsRepository>().ToMethod(x => new AssemblyResourceExcludedWordsRepository("GG.DonateAnywhere.Core.PageAnalysis.blacklist.txt"));

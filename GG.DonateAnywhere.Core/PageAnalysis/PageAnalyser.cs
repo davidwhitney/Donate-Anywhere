@@ -24,7 +24,12 @@ namespace GG.DonateAnywhere.Core.PageAnalysis
 
         public PageReport Analyse(Uri uri)
         {
-            var html = _httpRequestTransport.FetchUri(uri);
+            string html;
+            using (new DebugTimer("HTTP fetch"))
+            {
+                html = _httpRequestTransport.FetchUri(uri);
+            }
+
             var rawText = ExtractPlainTextFromHtml(html);
             
             var ranking = _keywordRankingStrategy.RankKeywords(rawText);
