@@ -223,3 +223,12 @@ news
 with
 from
 linked
+doctype
+html
+public
+wcdtd
+xhtml
+transitionalen
+httpwwwworgtrxhtmldtdxhtmltransitionaldtd
+data
+extracted
