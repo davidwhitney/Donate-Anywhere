@@ -49,7 +49,7 @@
         
     </asp:ContentPlaceHolder>
     <div style="text-align: right;">
-        <img src="../../Content/donateAnywhereLogo_small.png" alt="Powered by JustGiving DonateAnywhere" />
+        <img src="<%=Url.Content("~/Content/donateAnywhereLogo_small.png") %>" alt="Powered by JustGiving DonateAnywhere" />
     </div>
     
     <br /><br />
