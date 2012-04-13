@@ -52,8 +52,7 @@ namespace DonateAnywhere.Web.App_Start
             kernel.Bind<IDirectHttpRequestTransport>().To<CachingHttpGetter>();
             kernel.Bind<IDirectHttpRequestTransport>().To<DirectHttpRequestTransport>().WhenInjectedInto<CachingHttpGetter>();
 
-            kernel.Bind<IPageAnalyser>().To<CachingPageAnalyser>();
-            kernel.Bind<IPageAnalyser>().To<PageAnalyser>().WhenInjectedInto<CachingPageAnalyser>();
+            kernel.Bind<IPageAnalyser>().To<PageAnalyser>();
 
             kernel.Bind<ISearchProvider>().To<CachingApiSearchProvider>();
             kernel.Bind<ISearchProvider>().To<ApiSearchProvider>().WhenInjectedInto<CachingApiSearchProvider>();

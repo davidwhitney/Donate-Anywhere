@@ -62,7 +62,6 @@
     <Compile Include="Cache.cs" />
     <Compile Include="Http\CachingHttpGetter.cs" />
     <Compile Include="Keywords.cs" />
-    <Compile Include="PageAnalysis\CachingPageAnalyser.cs" />
     <Compile Include="Sanitise\CaseCorrectionExtensions.cs" />
     <Compile Include="Sanitise\ContentCleaner.cs" />
     <Compile Include="Sanitise\HtmlCleaner.cs" />

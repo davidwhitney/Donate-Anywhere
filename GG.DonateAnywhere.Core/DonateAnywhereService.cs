@@ -29,17 +29,23 @@ namespace GG.DonateAnywhere.Core
             }
 
             var keywords = CalculateKeywordsForSearchCriteria(donateAnywhereContext);
-            
-            var searchResults = _searchProvider.Search(keywords.ToListOfStrings()
-                                               .Take(KEYWORD_CAP_FOR_SEARCH_REQUEST))
-                                               .Take(SEARCH_RESULT_CAP)
-                                               .BoostResultsWhichContainExactKeyword(keywords)
-                                               .RemoveResultsThatDontMention(keywords);
 
-            var relatedResults = _searchProvider.Search(keywords.ToListOfStrings())
-                                                .RemoveAnyItemsThatAreAlsoIn(searchResults)
-                                                .BoostResultsWhichContainExactKeyword(keywords)
-                                                .Take(SEARCH_RESULT_CAP);
+            SearchResults searchResults;
+            SearchResults relatedResults;
+            
+            using (new DebugTimer("Calling search API for " + donateAnywhereContext.UriToAnalyse))
+            {
+                searchResults = _searchProvider.Search(keywords.ToListOfStrings()
+                    .Take(KEYWORD_CAP_FOR_SEARCH_REQUEST))
+                    .Take(SEARCH_RESULT_CAP)
+                    .BoostResultsWhichContainExactKeyword(keywords)
+                    .RemoveResultsThatDontMention(keywords);
+
+                relatedResults = _searchProvider.Search(keywords.ToListOfStrings())
+                    .RemoveAnyItemsThatAreAlsoIn(searchResults)
+                    .BoostResultsWhichContainExactKeyword(keywords)
+                    .Take(SEARCH_RESULT_CAP);
+            }
 
             return new DonateAnywhereResult
                        {
@@ -68,11 +74,8 @@ namespace GG.DonateAnywhere.Core
 
         private void ExtractTopTenKeywordsFromPage(IDonateAnywhereRequestContext donateAnywhereContext, List<string> keywords)
         {
-            using (new DebugTimer("PageAnalyser.Analyse for " + donateAnywhereContext.UriToAnalyse))
-            {
-                var report = _pageAnalyser.Analyse(donateAnywhereContext.UriToAnalyse);
-                keywords.AddRange(report.KeywordDensity.Keys.Take(KEYWORD_CAP));
-            }
+            var report = _pageAnalyser.Analyse(donateAnywhereContext.UriToAnalyse);
+            keywords.AddRange(report.KeywordDensity.Keys.Take(KEYWORD_CAP));
         }
 
         private static void TakeTopTenUserSuggestedKeywords(IDonateAnywhereRequestContext donateAnywhereContext, List<string> keywords)
