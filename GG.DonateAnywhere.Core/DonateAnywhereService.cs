@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using GG.DonateAnywhere.Core.Http;
 using GG.DonateAnywhere.Core.PageAnalysis;
-using GG.DonateAnywhere.Core.Sanitise;
 using GG.DonateAnywhere.Core.Searching;
 
 namespace GG.DonateAnywhere.Core
@@ -12,12 +10,7 @@ namespace GG.DonateAnywhere.Core
     {       
         private readonly IPageAnalyser _pageAnalyser;
         private readonly ISearchProvider _searchProvider;
-
-        public DonateAnywhereService(ISearchProvider searchProvider)
-            : this(new PageAnalyser(new DirectHttpRequestTransport(), new SimpleKeywordRankingStrategy(), new ContentCleaner()), searchProvider)
-        {
-        }
-
+        
         public DonateAnywhereService(IPageAnalyser pageAnalyser, ISearchProvider searchProvider)
         {
             _pageAnalyser = pageAnalyser;

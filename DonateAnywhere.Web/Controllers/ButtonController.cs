@@ -1,10 +1,6 @@
 ﻿using System.Web.Mvc;
 using DonateAnywhere.Web.Code;
 using GG.DonateAnywhere.Core;
-using GG.DonateAnywhere.Core.Http;
-using GG.DonateAnywhere.Core.PageAnalysis;
-using GG.DonateAnywhere.Core.Sanitise;
-using GG.DonateAnywhere.Core.Searching;
 
 namespace DonateAnywhere.Web.Controllers
 {
@@ -12,14 +8,7 @@ namespace DonateAnywhere.Web.Controllers
     {
         private readonly IDonateAnywhereRequestContextFactory _contextFactory;
         private readonly IDonateAnywhereService _donateAnywhereService;
-
-        public ButtonController()
-            : this(new DonateAnywhereRequestContextFactory(),
-                   new DonateAnywhereService(new PageAnalyser(new DirectHttpRequestTransport(), new SimpleKeywordRankingStrategy(), new ContentCleaner()), 
-                   new ApiSearchProvider()))
-        {
-        }
-
+        
         public ButtonController(IDonateAnywhereRequestContextFactory contextFactory, IDonateAnywhereService donateAnywhereService)
         {
             _contextFactory = contextFactory;
