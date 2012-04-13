@@ -4,6 +4,6 @@ namespace GG.DonateAnywhere.Core.Searching
 {
     public interface ISearchProvider
     {
-        IList<SearchResult> Search(List<string> keywords);
+        SearchResults Search(IEnumerable<string> keywords);
     }
 }

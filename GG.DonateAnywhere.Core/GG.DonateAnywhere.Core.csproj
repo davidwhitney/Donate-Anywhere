@@ -56,6 +56,8 @@
     <Compile Include="DonateAnywhereRequestContext.cs" />
     <Compile Include="DonateAnywhereResult.cs" />
     <Compile Include="DonateAnywhereService.cs" />
+    <Compile Include="ExtractedKeyword.cs" />
+    <Compile Include="Keywords.cs" />
     <Compile Include="Sanitise\CaseCorrectionExtensions.cs" />
     <Compile Include="Sanitise\ContentCleaner.cs" />
     <Compile Include="Sanitise\HtmlCleaner.cs" />
@@ -74,6 +76,7 @@
     <Compile Include="Searching\ApiSearchProvider.cs" />
     <Compile Include="Searching\SearchResult.cs" />
     <Compile Include="PageAnalysis\SimpleKeywordRankingStrategy.cs" />
+    <Compile Include="Searching\SearchResults.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="PageAnalysis\blacklist.txt" />
