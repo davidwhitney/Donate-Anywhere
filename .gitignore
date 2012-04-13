@@ -9,5 +9,5 @@ GG.DonateAnywhere.Core/bin/*
 *.csproj.user
 GG.DonateAnywhere.Core/obj/*
 *.suo
-GG.DonateAnywhere.Web/bin/*
-GG.DonateAnywhere.Web/obj/*
+DonateAnywhere.Web/bin/*
+DonateAnywhere.Web/obj/*
