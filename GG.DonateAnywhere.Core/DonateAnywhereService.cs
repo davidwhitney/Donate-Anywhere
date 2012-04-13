@@ -10,6 +10,10 @@ namespace GG.DonateAnywhere.Core
     {       
         private readonly IPageAnalyser _pageAnalyser;
         private readonly ISearchProvider _searchProvider;
+
+        private const int SEARCH_RESULT_CAP = 10;
+        private const int KEYWORD_CAP = 10;
+        private const int KEYWORD_CAP_FOR_SEARCH_REQUEST = 4;
         
         public DonateAnywhereService(IPageAnalyser pageAnalyser, ISearchProvider searchProvider)
         {
@@ -25,32 +29,35 @@ namespace GG.DonateAnywhere.Core
             }
 
             var keywords = CalculateKeywordsForSearchCriteria(donateAnywhereContext);
-            var top4KeywordsResults = _searchProvider.Search(keywords.Take(4).ToList()).Take(10).ToList();
-            var orderedTopResults = SortTopResultsByKeywordRelevance(keywords, top4KeywordsResults);
-            orderedTopResults = FilterResultsThatDontMention(keywords, orderedTopResults);
+            var searchResults = _searchProvider.Search(keywords.Take(KEYWORD_CAP_FOR_SEARCH_REQUEST).ToList())
+                                               .Take(SEARCH_RESULT_CAP)
+                                               .ToList();
+
+            var adjustedResults = BoostResultsWhichContainExactKeyword(keywords, searchResults);
+            adjustedResults = FilterResultsThatDontMention(keywords, adjustedResults);
 
             var rawRelatedResults = _searchProvider.Search(keywords).ToList();
-            var relatedDictionary = DeduplicateRelatedResults(rawRelatedResults, top4KeywordsResults);
-            var relatedResults = SortTopResultsByKeywordRelevance(keywords, relatedDictionary.Values.ToList()).Take(10).ToList();
+            var relatedDictionary = DeduplicateRelatedResults(rawRelatedResults, searchResults);
+            var relatedResults = BoostResultsWhichContainExactKeyword(keywords, relatedDictionary.Values.ToList()).Take(SEARCH_RESULT_CAP).ToList();
 
 
             var donateAnywhereResult = new DonateAnywhereResult
                                            {
                                                Keywords = keywords,
-                                               Results = orderedTopResults.Take(10).ToList(),
-                                               RelatedResults = relatedResults.Take(10).ToList(),
+                                               Results = adjustedResults.Take(SEARCH_RESULT_CAP).ToList(),
+                                               RelatedResults = relatedResults.Take(SEARCH_RESULT_CAP).ToList(),
                                                RequestContext = donateAnywhereContext
                                            };
 
             return donateAnywhereResult;
         }
 
-        private static IEnumerable<SearchResult> SortTopResultsByKeywordRelevance(IList<string> keywords, IEnumerable<SearchResult> top4KeywordsResults)
+        private static IEnumerable<SearchResult> BoostResultsWhichContainExactKeyword(IList<string> keywords, IEnumerable<SearchResult> top4KeywordsResults)
         {
             var topResults = new List<SearchResult>();
             var bottomResults = new List<SearchResult>();
-
-            int boostedInsert = 0;
+            
+            var boostedInsert = 0;
 
             if(keywords.Count < 1)
             {
@@ -59,6 +66,14 @@ namespace GG.DonateAnywhere.Core
             if (keywords.Count < 2)
             {
                 keywords.Insert(1, string.Empty);
+            }
+            if (keywords.Count < 3)
+            {
+                keywords.Insert(2, string.Empty);
+            }
+            if (keywords.Count < 4)
+            {
+                keywords.Insert(3, string.Empty);
             }
 
             foreach(var item in top4KeywordsResults)
@@ -125,12 +140,12 @@ namespace GG.DonateAnywhere.Core
         private void ExtractTopTenKeywordsFromPage(IDonateAnywhereRequestContext donateAnywhereContext, List<string> keywords)
         {
             var report = _pageAnalyser.Analyse(donateAnywhereContext.UriToAnalyse);
-            keywords.AddRange(report.KeywordDensity.Keys.Take(10));
+            keywords.AddRange(report.KeywordDensity.Keys.Take(KEYWORD_CAP));
         }
 
         private static void TakeTopTenUserSuggestedKeywords(IDonateAnywhereRequestContext donateAnywhereContext, List<string> keywords)
         {
-            keywords.AddRange(donateAnywhereContext.UserSuppliedKeywords.Take(10));
+            keywords.AddRange(donateAnywhereContext.UserSuppliedKeywords.Take(KEYWORD_CAP));
         }
     }
 }
