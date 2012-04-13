@@ -68,8 +68,11 @@ namespace GG.DonateAnywhere.Core
 
         private void ExtractTopTenKeywordsFromPage(IDonateAnywhereRequestContext donateAnywhereContext, List<string> keywords)
         {
-            var report = _pageAnalyser.Analyse(donateAnywhereContext.UriToAnalyse);
-            keywords.AddRange(report.KeywordDensity.Keys.Take(KEYWORD_CAP));
+            using (new DebugTimer("PageAnalyser.Analyse for " + donateAnywhereContext.UriToAnalyse))
+            {
+                var report = _pageAnalyser.Analyse(donateAnywhereContext.UriToAnalyse);
+                keywords.AddRange(report.KeywordDensity.Keys.Take(KEYWORD_CAP));
+            }
         }
 
         private static void TakeTopTenUserSuggestedKeywords(IDonateAnywhereRequestContext donateAnywhereContext, List<string> keywords)

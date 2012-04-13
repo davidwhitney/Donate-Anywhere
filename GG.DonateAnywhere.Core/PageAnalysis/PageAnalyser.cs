@@ -25,13 +25,13 @@ namespace GG.DonateAnywhere.Core.PageAnalysis
         public PageReport Analyse(Uri uri)
         {
             string html;
-            using (new DebugTimer("HTTP fetch"))
+            using (new DebugTimer("HTTP fetch for " + uri))
             {
                 html = _httpRequestTransport.FetchUri(uri);
             }
 
             var rawText = ExtractPlainTextFromHtml(html);
-            
+
             var ranking = _keywordRankingStrategy.RankKeywords(rawText);
 
             var emphasisedWords = ExtractImportantWordsFromHtml(html).ToList();
@@ -43,7 +43,7 @@ namespace GG.DonateAnywhere.Core.PageAnalysis
 
             var orderedRanking = ranking.OrderBy(x => x.Value).Reverse().ToDictionary(x => x.Key, x => x.Value);
 
-            return new PageReport { KeywordDensity = orderedRanking };
+            return new PageReport {KeywordDensity = orderedRanking};
         }
 
 
