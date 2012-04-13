@@ -3,6 +3,9 @@ using System.Linq;
 
 namespace GG.DonateAnywhere.Core.Searching
 {
+    /// <summary>
+    /// This is *really* not thread safe, but shouldn't be a problem.
+    /// </summary>
     public class SearchResults : List<SearchResult>
     {    
         public SearchResults()

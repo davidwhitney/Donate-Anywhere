@@ -29,7 +29,7 @@ namespace GG.DonateAnywhere.Core.PageAnalysis
             
             var ranking = _keywordRankingStrategy.RankKeywords(rawText);
 
-            var emphasisedWords = ExtractImportantWordsFromHtml(html);
+            var emphasisedWords = ExtractImportantWordsFromHtml(html).ToList();
             var importantUriWords = ExtractKeywordsFromUri(uri);
 
             Uprank(ranking, importantUriWords, 30);
@@ -58,19 +58,21 @@ namespace GG.DonateAnywhere.Core.PageAnalysis
             return upRankedwords;
         }
 
-        private void AddCleanedWordsFromNode(HtmlNodeCollection containingNode, ICollection<string> upRankedwords)
+        private void AddCleanedWordsFromNode(IEnumerable<HtmlNode> containingNode, ICollection<string> upRankedwords)
         {
-            if (containingNode != null)
+            if (containingNode == null)
             {
-                foreach (var word in
-                    containingNode.Select(node => node.InnerText.Split(' ').Take(3)).SelectMany(words => words.Where(word => !upRankedwords.Contains(word))).Where(word => !string.IsNullOrWhiteSpace(word)))
-                {
-                    var cleanWord = _contentCleaner.ClenseSourceData(word);
-                    if (!string.IsNullOrWhiteSpace(cleanWord))
-                    {
-                        upRankedwords.Add(_contentCleaner.ClenseSourceData(word));
-                    }
-                }
+                return;
+            }
+
+            foreach (var word in from word in containingNode.Select(node => node.InnerText.Split(' ').Take(3))
+                                                            .SelectMany(words => words.Where(word => !upRankedwords.Contains(word)))
+                                                            .Where(word => !string.IsNullOrWhiteSpace(word)) 
+                                 let cleanWord = _contentCleaner.ClenseSourceData(word) 
+                                 where !string.IsNullOrWhiteSpace(cleanWord) 
+                                 select word)
+            {
+                upRankedwords.Add(_contentCleaner.ClenseSourceData(word));
             }
         }
 
@@ -91,7 +93,7 @@ namespace GG.DonateAnywhere.Core.PageAnalysis
         private static IEnumerable<string> ExtractKeywordsFromUri(Uri uri)
         {
             var words = uri.Segments[uri.Segments.Length-1].Split('_', '-', '/', ')', '(').ToList();
-            for (int index = 0; index < words.Count; index++)
+            for (var index = 0; index < words.Count; index++)
             {
                 words[index] = words[index].Replace(".html", "");
                 words[index] = words[index].Replace(".htm", "");
