@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using JustGiving.Api.Sdk;
-using JustGiving.Api.Sdk.Model.Search;
 
 namespace GG.DonateAnywhere.Core.Searching
 {

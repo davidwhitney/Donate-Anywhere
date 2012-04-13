@@ -74,6 +74,7 @@
     <Compile Include="PageAnalysis\IExcludedWordsRepository.cs" />
     <Compile Include="PageAnalysis\IKeywordRankingStrategy.cs" />
     <Compile Include="PageAnalysis\IPageAnalyser.cs" />
+    <Compile Include="Searching\CachingApiSearchProvider.cs" />
     <Compile Include="Searching\ISearchProvider.cs" />
     <Compile Include="PageAnalysis\PageAnalyser.cs" />
     <Compile Include="PageAnalysis\PageReport.cs" />
