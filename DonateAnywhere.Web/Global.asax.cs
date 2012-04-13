@@ -21,6 +21,8 @@ namespace DonateAnywhere.Web
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
+            routes.MapRoute("TestPages", "TestPages/Button/{fileName}.htm", new { controller = "ButtonTests", action = "Index" });
+            
             routes.MapRoute(
                 "Default", // Route name
                 "{controller}/{action}/{id}", // URL with parameters

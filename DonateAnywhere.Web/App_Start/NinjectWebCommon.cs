@@ -57,7 +57,7 @@ namespace DonateAnywhere.Web.App_Start
             kernel.Bind<IPageAnalyser>().To<PageAnalyser>();
             kernel.Bind<IKeywordRankingStrategy>().To<SimpleKeywordRankingStrategy>();
             kernel.Bind<ContentCleaner>().ToSelf();
-            kernel.Bind<IExcludedWordsRepository>().ToMethod(x => new AssemblyResourceExcludedWordsRepository("GG.DonateAnywhere.Core.PageAnalysis.blacklist.txt"));
+            kernel.Bind<IExcludedWordsRepository>().ToMethod(x => new AssemblyResourceExcludedWordsRepository("GG.DonateAnywhere.Core.PageAnalysis.blacklist.txt")).InSingletonScope();
         }        
     }
 }

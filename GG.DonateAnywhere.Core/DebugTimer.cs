@@ -10,13 +10,13 @@ namespace GG.DonateAnywhere.Core
         public DebugTimer(string name = null)
         {
             _name = name ?? Guid.NewGuid().ToString();
-            Debug.WriteLine("{0} started.", _name);
+            Debug.WriteLine(string.Format("{0} started.", _name));
             Start();
         }
 
         public void Dispose()
         {
-            Debug.WriteLine("{0} took {1} ms", _name, ElapsedMilliseconds);
+            Debug.WriteLine(string.Format("{0} took {1} ms", _name, ElapsedMilliseconds));
             Stop();
         }
     }

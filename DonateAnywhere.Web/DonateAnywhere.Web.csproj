@@ -80,6 +80,7 @@
     <Compile Include="Code\IDonateAnywhereRequestContextFactory.cs" />
     <Compile Include="Code\MockSearchProvider.cs" />
     <Compile Include="Controllers\ButtonController.cs" />
+    <Compile Include="Controllers\ButtonTestsController.cs" />
     <Compile Include="Controllers\DocumentationController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LandingPageController.cs" />
@@ -122,12 +123,12 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\modernizr-1.7.js" />
     <Content Include="Scripts\modernizr-1.7.min.js" />
-    <Content Include="TestPages\Button\BBC-Chernobyl.htm" />
-    <Content Include="TestPages\Button\Floods.htm" />
-    <Content Include="TestPages\Button\KeywordOverload.htm" />
-    <Content Include="TestPages\Button\LandingPageReferrerTest.htm" />
-    <Content Include="TestPages\Button\SimpleTest.htm" />
-    <Content Include="TestPages\Button\SkipResultsPage.htm" />
+    <Content Include="Views\ButtonTests\BBC-Chernobyl.aspx" />
+    <Content Include="Views\ButtonTests\Floods.aspx" />
+    <Content Include="Views\ButtonTests\KeywordOverload.aspx" />
+    <Content Include="Views\ButtonTests\LandingPageReferrerTest.aspx" />
+    <Content Include="Views\ButtonTests\SimpleTest.aspx" />
+    <Content Include="Views\ButtonTests\SkipResultsPage.aspx" />
     <Content Include="Views\Button\Index.aspx" />
     <Content Include="Views\Button\NoResultsFound.aspx" />
     <Content Include="Views\Button\NotEnoughInformation.aspx" />

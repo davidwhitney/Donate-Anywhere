@@ -1,4 +1,4 @@
-﻿            
+﻿<%@ Page Language="C#" Inherits="System.Web.Mvc.ViewPage<dynamic>" %>            
     
  
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
@@ -1778,7 +1778,7 @@
   <div class="m-zeitgeist promo-component four-col attention-data"> 
  
  
-<iframe src="/button" scrolling="no" frameborder="0" height="85" width="200"></iframe> 
+<iframe src="<%=Model.SiteRoot %>button" scrolling="no" frameborder="0" height="85" width="200"></iframe> 
 
     <div class="hd"> 
     	<h3>On World news</h3> 
