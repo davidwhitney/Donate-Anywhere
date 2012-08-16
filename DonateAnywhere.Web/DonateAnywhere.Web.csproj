@@ -102,10 +102,6 @@
       <DependentUpon>Button.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Views\Documentation\Documentation.master.cs">
-      <DependentUpon>Documentation.master</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
     <Compile Include="Views\LandingPage\LandingPage.Master.cs">
       <DependentUpon>LandingPage.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -122,6 +118,7 @@
     <Content Include="Content\bootstrap\css\bootstrap.min.css" />
     <Content Include="Content\bootstrap\img\glyphicons-halflings-white.png" />
     <Content Include="Content\bootstrap\img\glyphicons-halflings.png" />
+    <Content Include="Content\bootstrap\js\bootstrap-dropdown.js" />
     <Content Include="Content\bootstrap\js\bootstrap.js" />
     <Content Include="Content\bootstrap\js\bootstrap.min.js" />
     <Content Include="Content\Documentation\Images\button-direct-to-first-link.png" />
@@ -186,9 +183,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Button\Button.Master" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\Documentation\Documentation.master" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\LandingPage\LandingPage.Master" />

@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="Documentation.Master" Inherits="System.Web.Mvc.ViewPage<dynamic>" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/HomeAndDocs.Master" Inherits="System.Web.Mvc.ViewPage<dynamic>" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="Content" runat="server">
 
@@ -74,7 +74,4 @@
             <div class="clear"></div>
         </div>
 
-</asp:Content>
-
-<asp:Content ID="Content2" ContentPlaceHolderID="head" runat="server">
 </asp:Content>

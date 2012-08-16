@@ -63,3 +63,22 @@
 	padding: 20px;
 	height: 1%;
 }
+
+.leftCol
+{
+    float:left; width: 60%;
+}
+.rightCol
+{
+    float:right; width: 40%;
+}
+.clear
+{
+    clear:both;
+}
+
+body
+{
+    padding-top: 60px;
+    padding-bottom: 40px;
+}
