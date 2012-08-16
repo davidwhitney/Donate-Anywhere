@@ -68,8 +68,7 @@
 	text-align: right;
 	padding: 20px;
 	height: 1%;
-}
-©Copyright Max Design 2010</style>
+}</style>
 
     <asp:ContentPlaceHolder ID="head" runat="server"></asp:ContentPlaceHolder>
 </head>
