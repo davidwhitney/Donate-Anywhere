@@ -40,6 +40,7 @@
                     <ul class="nav">
 
                         <li class="active"><a href="<%=Url.Action("Index", "Home") %>">Home</a></li>
+                        <li class="active"><a href="<%=Url.Action("About", "Home") %>">About</a></li>
                         <li class="dropdown">
                             <a class="dropdown-toggle" data-toggle="dropdown" data-target="#" href="<%=Url.Action("Index", "Documentation") %>">Documentation<b class="caret"></b></a>
                             <ul class="dropdown-menu">

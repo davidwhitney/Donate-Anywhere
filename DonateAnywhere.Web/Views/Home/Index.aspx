@@ -14,9 +14,9 @@
         <h2>For Consumers</h2>
 
         <p>You can start using the DonateAnywhere bookmarklet now!</p>
-        <p>Just drag the following link to your bookmark toolbar, and if you ever feel moved enough by what you're reading to donate to the cause, just click it, from anywhere.
+        <p>Just drag the buton belowto your bookmark toolbar, and if you ever feel moved enough by what you're reading to donate to the cause, just click it, from anywhere.
         <br /><br />
-        <span id="bookmark"><a href="javascript:window.location='http://<%=HttpContext.Current.Request.Url.Host%><%=Url.Content("~/") %>LandingPage?UrlContext='+encodeURI(window.location);" name="bmklink">DonateAnywhere</a></span>
+        <span id="bookmark"><a class="btn"  href="javascript:window.location='http://<%=HttpContext.Current.Request.Url.Host%><%=Url.Content("~/") %>LandingPage?UrlContext='+encodeURI(window.location);" name="bmklink">DonateAnywhere</a></span>
         </p>
 
     </div>
@@ -25,14 +25,12 @@
     <div class="span4">
         <h2>For Developers</h2>
         <p>You can embed it in your projects</p>
-        <p><a class="btn" href="#">View details &raquo;</a></p>
     </div>
           
 
     <div class="span4">
         <h2>For Content Providers</h2>
         <p>You can embed it in your CMS.</p>
-        <p><a class="btn" href="#">View details &raquo;</a></p>
     </div>
     </div>
 
