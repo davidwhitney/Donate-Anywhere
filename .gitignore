@@ -11,3 +11,4 @@ GG.DonateAnywhere.Core/obj/*
 *.suo
 DonateAnywhere.Web/bin/*
 DonateAnywhere.Web/obj/*
+/*.dotCover

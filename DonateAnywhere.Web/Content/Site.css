@@ -1,28 +1,65 @@
-/* Styles for validation helpers
------------------------------------------------------------*/
-.field-validation-error
+#container
 {
-    color: #ff0000;
+	margin: 0 30px;
+	background: #fff;
 }
 
-.field-validation-valid
+#header
 {
-    display: none;
+	background: #ccc;
+	padding: 20px;
 }
 
-.input-validation-error
+#header h1 { margin: 0; }
+
+#navigation
 {
-    border: 1px solid #ff0000;
-    background-color: #ffeeee;
+	float: left;
+	width: 100%;
+	background: #333;
 }
 
-.validation-summary-errors
+#navigation ul
 {
-    font-weight: bold;
-    color: #ff0000;
+	margin: 0;
+	padding: 0;
 }
 
-.validation-summary-valid
+#navigation ul li
 {
-    display: none;
+	list-style-type: none;
+	display: inline;
+}
+
+#navigation li a
+{
+	display: block;
+	float: left;
+	padding: 5px 10px;
+	color: #fff;
+	text-decoration: none;
+	border-right: 1px solid #fff;
+}
+
+#navigation li a:hover { background: #383; }
+
+#contentContainer
+{
+	clear: left;
+	padding: 20px;
+}
+
+#contentContainer h2
+{
+	color: #000;
+	font-size: 160%;
+	margin: 0 0 .5em;
+}
+
+#footer
+{
+	background: #ccc;
+	text-align: right;
+	padding: 20px;
+	height: 1%;
 }

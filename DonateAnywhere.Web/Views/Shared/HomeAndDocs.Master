@@ -1,93 +1,43 @@
-﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="HomeAndDocs.master.cs" Inherits="DonateAnywhere.Web.Views.Shared.HomeAndDocs" %><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="HomeAndDocs.master.cs" Inherits="DonateAnywhere.Web.Views.Shared.HomeAndDocs" %><!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
     <title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+      
 
-    <style type="text/css">
-#container
-{
-	margin: 0 30px;
-	background: #fff;
-}
+    <link href="/Content/bootstrap/css/bootstrap.css" rel="stylesheet">
+    <link href="/Content/bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
+    <link href="/Content/Site.css" rel="stylesheet" />
 
-#header
-{
-	background: #ccc;
-	padding: 20px;
-}
-
-#header h1 { margin: 0; }
-
-#navigation
-{
-	float: left;
-	width: 100%;
-	background: #333;
-}
-
-#navigation ul
-{
-	margin: 0;
-	padding: 0;
-}
-
-#navigation ul li
-{
-	list-style-type: none;
-	display: inline;
-}
-
-#navigation li a
-{
-	display: block;
-	float: left;
-	padding: 5px 10px;
-	color: #fff;
-	text-decoration: none;
-	border-right: 1px solid #fff;
-}
-
-#navigation li a:hover { background: #383; }
-
-#contentContainer
-{
-	clear: left;
-	padding: 20px;
-}
-
-#contentContainer h2
-{
-	color: #000;
-	font-size: 160%;
-	margin: 0 0 .5em;
-}
-
-#footer
-{
-	background: #ccc;
-	text-align: right;
-	padding: 20px;
-	height: 1%;
-}</style>
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
 
     <asp:ContentPlaceHolder ID="head" runat="server"></asp:ContentPlaceHolder>
 </head>
-<div id="container">
-	<div id="header">
-		<h1>JustGiving Donate Anywhere</h1>
-	</div>
-	<div id="navigation">
-        <ul>
-			<li><a href="<%=Url.Action("Index", "Home") %>">Home</a></li>
-			<li><a href="<%=Url.Action("Index", "Documentation") %>">Documentation</a></li>
-            <asp:ContentPlaceHolder ID="extranavigationitems" runat="server"></asp:ContentPlaceHolder>
-		</ul>
-	</div>
-	<div id="contentContainer">
-    <asp:ContentPlaceHolder ID="content" runat="server"></asp:ContentPlaceHolder>
-	</div>
-	<div id="footer">
-		Copyright © JustGiving
-	</div>
-</div>
+<body>
+    <div id="container">
+	    <div id="header">
+		    <h1>JustGiving Donate Anywhere</h1>
+	    </div>
+	    <div id="navigation">
+            <ul>
+			    <li><a href="<%=Url.Action("Index", "Home") %>">Home</a></li>
+			    <li><a href="<%=Url.Action("Index", "Documentation") %>">Documentation</a></li>
+                <asp:ContentPlaceHolder ID="extranavigationitems" runat="server"></asp:ContentPlaceHolder>
+		    </ul>
+	    </div>
+	    <div id="contentContainer">
+        <asp:ContentPlaceHolder ID="content" runat="server"></asp:ContentPlaceHolder>
+	    </div>
+	    <div id="footer">
+		    Copyright © David Whitney
+	    </div>
+    </div>
 
+    
+  </body>
+</html>
