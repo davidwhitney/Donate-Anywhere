@@ -52,7 +52,7 @@
                     </ul>
                 </div>
                 
-                <div class="nav-collapse pull-right" style="padding-top: 5px;">
+                <div class="nav-collapse pull-right" style="padding-top: 10px;">
                     <ul class="nav">
                         <li><a class="socialite facebook-like" href="" data-url="" data-send="false" data-layout="button_count"  data-show-faces="false">Like on Facebook</a></li>
                         <li><a class="socialite twitter-share" href="" data-url="">Share on Twitter</a></li>
