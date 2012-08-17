@@ -21,7 +21,7 @@
     <script type="text/javascript">
         $(function () {
             $('.dropdown-toggle').dropdown();
-
+            Socialite.load();
         });
     </script>
 </head>
@@ -40,7 +40,7 @@
                     <ul class="nav">
 
                         <li class="active"><a href="<%=Url.Action("Index", "Home") %>">Home</a></li>
-                        <li class="active"><a href="<%=Url.Action("About", "Home") %>">About</a></li>
+                        <li class=""><a href="<%=Url.Action("About", "Home") %>">About</a></li>
                         <li class="dropdown">
                             <a class="dropdown-toggle" data-toggle="dropdown" data-target="#" href="<%=Url.Action("Index", "Documentation") %>">Documentation<b class="caret"></b></a>
                             <ul class="dropdown-menu">
@@ -49,15 +49,27 @@
                                 <li><a href="<%=Url.Action("IntelligentLinks", "Documentation") %>">Intelligent Links Documentation</a></li>
                             </ul>
                         </li>
-
-
                     </ul>
                 </div>
+                
+                <div class="nav-collapse pull-right" style="padding-top: 5px;">
+                    <ul class="nav">
+                        <li><a class="socialite facebook-like" href="" data-url="" data-send="false" data-layout="button_count"  data-show-faces="false">Like on Facebook</a></li>
+                        <li><a class="socialite twitter-share" href="" data-url="">Share on Twitter</a></li>
+                        <li><a class="socialite googleplus-one" href="" data-url="">Google +1</a></li>
+                        <li><a class="socialite linkedin-share" href="" data-url="">linkedin-share</a></li>
+                    </ul>
+                </div>
+
             </div>
         </div>
     </div>
+    
+    
+
 
     <div class="container">
+        
         <asp:ContentPlaceHolder ID="content" runat="server"></asp:ContentPlaceHolder>
 
         <hr>
@@ -65,5 +77,8 @@
             <p>&copy; David Whitney 2012</p>
         </footer>
     </div>
+
+    <script src="/Content/socialite.min.js"></script>
+
 </body>
 </html>

@@ -127,6 +127,7 @@
     <Content Include="Content\donateAnywhereLogo.png" />
     <Content Include="Content\donateAnywhereLogo_small.png" />
     <Content Include="Content\Site.css" />
+    <Content Include="Content\socialite.min.js" />
     <Content Include="Global.asax" />
     <Content Include="Scripts\jquery-1.5.1-vsdoc.js" />
     <Content Include="Scripts\jquery-1.5.1.js" />
